@@ -17,19 +17,22 @@ export function EventFilters() {
   const [mode, setMode] = useState("Mode");
 
   const baseClasses =
-    "w-full rounded-full justify-between bg-gray-50 dark:bg-[#212121] border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-black";
+    "w-full rounded-full justify-between bg-gray-50 dark:bg-[#212121] border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300";
 
   return (
     <div className="mb-12 grid grid-cols-2 md:grid-cols-4 gap-4">
       {/* Event Status */}
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger>
           <Button variant="outline" className={baseClasses}>
             {eventStatus}
-            <ChevronDown className="h-4 w-4" />
+            <ChevronDown className="h-4 w-4 ml-2" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-full bg-white dark:bg-[#212121] text-gray-700 dark:text-gray-300">
+        <DropdownMenuContent
+          align="start"
+          className="bg-white dark:bg-[#212121]"
+        >
           <DropdownMenuItem onClick={() => setEventStatus("Upcoming")}>
             Upcoming
           </DropdownMenuItem>
@@ -44,13 +47,16 @@ export function EventFilters() {
 
       {/* Location */}
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger>
           <Button variant="outline" className={baseClasses}>
             {location}
-            <ChevronDown className="h-4 w-4" />
+            <ChevronDown className="h-4 w-4 ml-2" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-full bg-white dark:bg-[#212121] text-gray-700 dark:text-gray-300">
+        <DropdownMenuContent
+          align="start"
+          className="bg-white dark:bg-[#212121]"
+        >
           <DropdownMenuItem onClick={() => setLocation("California")}>
             California
           </DropdownMenuItem>
@@ -65,13 +71,16 @@ export function EventFilters() {
 
       {/* Price */}
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger>
           <Button variant="outline" className={baseClasses}>
             {price}
-            <ChevronDown className="h-4 w-4" />
+            <ChevronDown className="h-4 w-4 ml-2" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-full bg-white dark:bg-[#212121] text-gray-700 dark:text-gray-300">
+        <DropdownMenuContent
+          align="start"
+          className="bg-white dark:bg-[#212121]"
+        >
           <DropdownMenuItem onClick={() => setPrice("Free")}>
             Free
           </DropdownMenuItem>
@@ -89,13 +98,16 @@ export function EventFilters() {
 
       {/* Mode */}
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger>
           <Button variant="outline" className={baseClasses}>
             {mode}
-            <ChevronDown className="h-4 w-4" />
+            <ChevronDown className="h-4 w-4 ml-2" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-full bg-white dark:bg-[#212121] text-gray-700 dark:text-gray-300">
+        <DropdownMenuContent
+          align="start"
+          className="bg-white dark:bg-[#212121]"
+        >
           <DropdownMenuItem onClick={() => setMode("Online")}>
             Online
           </DropdownMenuItem>
