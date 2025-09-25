@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { EventFilters } from "../components/event-filters";
 import { EventCard } from "../components/event-card";
 import { Pagination } from "../components/pagination";
@@ -17,80 +18,104 @@ const events = [
     date: "13 June 2025",
     audience: "150 Audience",
     time: "08:00 PM - 09:00 PM",
+    status: "Upcoming",
+    mode: "Online",
   },
   {
     id: 2,
-    title: "Starry Nights Music Fest",
-    description:
-      "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
+    title: "Business Growth Summit",
+    description: "Learn from top industry leaders about scaling your business.",
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7ff2ccd6179f4d0604a066b8fd23a5f4933e4077-HzUp8sgJcqGW0T7Q80XNuq0QcfMBon.png",
-    price: "$99.99",
-    host: "Eric Gryzbowski",
-    location: "California",
-    date: "13 June 2025",
-    audience: "150 Audience",
-    time: "08:00 PM - 09:00 PM",
+    price: "Free",
+    host: "Sarah Connor",
+    location: "New York",
+    date: "21 June 2025",
+    audience: "200 Audience",
+    time: "10:00 AM - 04:00 PM",
+    status: "Live",
+    mode: "In-Person",
   },
   {
     id: 3,
-    title: "Starry Nights Music Fest",
-    description:
-      "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
+    title: "Tech Future Expo",
+    description: "Explore the future of technology with top innovators.",
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b112e96ec04d346fcc66b1d1159b2a1e15f9c927-CPyMJQkvJNWULRfG4xkS1pY5wUf6Fj.png",
-    price: "$99.99",
-    host: "Eric Gryzbowski",
-    location: "California",
-    date: "13 June 2025",
-    audience: "150 Audience",
-    time: "08:00 PM - 09:00 PM",
+    price: "$50 - $100",
+    host: "John Doe",
+    location: "Texas",
+    date: "5 July 2025",
+    audience: "500 Audience",
+    time: "09:00 AM - 06:00 PM",
+    status: "Completed",
+    mode: "Hybrid",
   },
   {
     id: 4,
-    title: "Starry Nights Music Fest",
-    description:
-      "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
+    title: "Yoga & Wellness Retreat",
+    description: "A day of peace, meditation, and rejuvenation.",
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b58c2eee2dce26882ed2a1a5fce4c8580b6e521f.png-K59LIGXskPmaTNvTXhT1ar3AJvtffs.jpeg",
-    price: "$99.99",
-    host: "Eric Gryzbowski",
+    price: "$0 - $50",
+    host: "Maya Collins",
     location: "California",
-    date: "13 June 2025",
-    audience: "150 Audience",
-    time: "08:00 PM - 09:00 PM",
+    date: "10 July 2025",
+    audience: "100 Audience",
+    time: "07:00 AM - 02:00 PM",
+    status: "Upcoming",
+    mode: "In-Person",
   },
   {
     id: 5,
-    title: "Starry Nights Music Fest",
+    title: "Startup Pitch Night",
     description:
-      "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
+      "Watch startups pitch to investors and network with entrepreneurs.",
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7ff2ccd6179f4d0604a066b8fd23a5f4933e4077-HzUp8sgJcqGW0T7Q80XNuq0QcfMBon.png",
-    price: "$99.99",
-    host: "Eric Gryzbowski",
-    location: "California",
-    date: "13 June 2025",
-    audience: "150 Audience",
-    time: "08:00 PM - 09:00 PM",
+    price: "$100+",
+    host: "Daniel Carter",
+    location: "New York",
+    date: "15 August 2025",
+    audience: "300 Audience",
+    time: "06:00 PM - 10:00 PM",
+    status: "Live",
+    mode: "Hybrid",
   },
   {
     id: 6,
-    title: "Starry Nights Music Fest",
-    description:
-      "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
+    title: "AI & Blockchain Conference",
+    description: "The biggest conference on AI, blockchain, and future tech.",
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6045dd738fe45e727c1239fb3a7b66f91989e5b5.png-JKv8YY0TIIh30SYK4yHkLzLK5WWegl.jpeg",
-    price: "$99.99",
-    host: "Eric Gryzbowski",
-    location: "California",
-    date: "13 June 2025",
-    audience: "150 Audience",
-    time: "08:00 PM - 09:00 PM",
+    price: "$50 - $100",
+    host: "Sophia Hayes",
+    location: "Texas",
+    date: "25 August 2025",
+    audience: "1000 Audience",
+    time: "09:00 AM - 05:00 PM",
+    status: "Completed",
+    mode: "Online",
   },
 ];
 
 export function EventsSection() {
+  const [filters, setFilters] = useState({
+    status: "Event Status",
+    location: "Location",
+    price: "Price",
+    mode: "Mode",
+  });
+
+  const filteredEvents = events.filter((event) => {
+    return (
+      (filters.status === "Event Status" || event.status === filters.status) &&
+      (filters.location === "Location" ||
+        event.location === filters.location) &&
+      (filters.price === "Price" || event.price === filters.price) &&
+      (filters.mode === "Mode" || event.mode === filters.mode)
+    );
+  });
   return (
     <main className="mx-auto max-w-7xl px-6 py-12">
       <div className="mb-8">
@@ -110,12 +135,20 @@ export function EventsSection() {
         </p>
       </div>
 
-      <EventFilters />
+      {/* Filters */}
+      <EventFilters onFilterChange={setFilters} />
 
+      {/* Events Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        {events.map((event) => (
-          <EventCard key={event.id} event={event} />
-        ))}
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))
+        ) : (
+          <p className="text-gray-600 dark:text-gray-300">
+            No events match your filters.
+          </p>
+        )}
       </div>
 
       <Pagination />
