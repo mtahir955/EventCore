@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,6 +17,31 @@ export function PrivacyPolicyContent() {
     email: "",
     message: "",
   });
+
+  // ✅ Active section state
+  const [activeSection, setActiveSection] = useState("information");
+
+  // ✅ Scroll spy effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["information", "usage", "sharing", "cookies"];
+      let current = activeSection;
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120 && rect.bottom >= 120) {
+            current = id;
+            break;
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeSection]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -44,6 +69,13 @@ export function PrivacyPolicyContent() {
     }
   };
 
+  const navItems = [
+    { id: "information", label: "Information We Collect" },
+    { id: "usage", label: "How Event Core Uses Your Information" },
+    { id: "sharing", label: "Sharing Your Information" },
+    { id: "cookies", label: "Cookies and Tracking Technologies" },
+  ];
+
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-8 bg-white dark:bg-black">
       {/* Breadcrumb */}
@@ -66,42 +98,37 @@ export function PrivacyPolicyContent() {
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
         {/* Sidebar */}
         <div className="w-full lg:w-64 flex-shrink-0">
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 sticky top-24">
             <h3 className="font-semibold text-gray-900 dark:text-white mb-4">
               Table of contents
             </h3>
             <nav className="space-y-3">
-              <a
-                href="#information"
-                className="block text-[#D19537] font-medium hover:underline"
-              >
-                Information We Collect
-              </a>
-              <a
-                href="#usage"
-                className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                How Event Core Uses Your Information
-              </a>
-              <a
-                href="#sharing"
-                className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                Sharing Your Information
-              </a>
-              <a
-                href="#cookies"
-                className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                Cookies and Tracking Technologies
-              </a>
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className={`block font-medium transition-colors ${
+                    activeSection === item.id
+                      ? "text-[#D19537] underline"
+                      : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                  }`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document
+                      .getElementById(item.id)
+                      ?.scrollIntoView({ behavior: "smooth" });
+                    setActiveSection(item.id);
+                  }}
+                >
+                  {item.label}
+                </a>
+              ))}
             </nav>
           </div>
         </div>
 
         {/* Main Content */}
         <div className="flex-1">
-          {/* Sections */}
           <section id="information" className="mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-black dark:text-white mb-6">
               Information We Collect
@@ -138,7 +165,6 @@ export function PrivacyPolicyContent() {
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
               Morbi sed imperdiet in ipsum, adipiscing elit dui lectus...
             </p>
-
             <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 sm:pl-6 py-4 mb-8 bg-gray-50 dark:bg-gray-800 rounded-r-lg">
               <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed">
                 "Ipsum sit mattis nulla quam nulla. Gravida id gravida ac enim

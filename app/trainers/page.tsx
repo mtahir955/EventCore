@@ -11,8 +11,10 @@ import { Linkedin, Instagram } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { usePathname } from "next/navigation";
 
 export default function TrainersPage() {
+  const pathname = usePathname(); // ⬅️ Detect current route
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -68,7 +70,7 @@ export default function TrainersPage() {
   };
 
   const navItems = [
-    { name: "Home", href: "/#", active: true },
+    { name: "Home", href: "/" },
     { name: "Events", href: "/events" },
     { name: "About", href: "/about-us" },
     { name: "Trainers", href: "/trainers" },
@@ -78,7 +80,7 @@ export default function TrainersPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-black">
       {/* Header */}
-      <header className="bg-white dark:bg-[#212121] border-b border-gray-100 dark:border-gray-800 px-6">
+      <header className="bg-white dark:bg-[#212121] border-b border-gray-200 dark:border-gray-700 px-4 py-1">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Left: Logo */}
@@ -94,27 +96,32 @@ export default function TrainersPage() {
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center space-x-12">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`text-[14px] font-medium transition-colors ${
-                    item.active
-                      ? "text-[#D19537] border-b-2 border-[#D19537] pb-1"
-                      : "text-gray-700 dark:text-white hover:text-[#D19537] dark:hover:text-[#D19537]"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  pathname.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`text-[14px] font-medium transition-colors ${
+                      isActive
+                        ? "text-[#D19537] border-b-2 border-[#D19537] pb-1"
+                        : "text-gray-700 dark:text-white hover:text-[#D19537] dark:hover:text-[#D19537]"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* Right Side Desktop */}
             <div className="hidden md:flex items-center space-x-4">
               <Button
-                onClick={() => {
-                  setTheme(resolvedTheme === "light" ? "dark" : "light");
-                }}
+                onClick={() =>
+                  setTheme(resolvedTheme === "light" ? "dark" : "light")
+                }
                 variant="ghost"
                 size="sm"
                 className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
@@ -151,21 +158,21 @@ export default function TrainersPage() {
             {/* Mobile Hamburger */}
             <div className="flex md:hidden items-center space-x-4">
               <Button
-                onClick={() => {
-                  setTheme(resolvedTheme === "light" ? "dark" : "light");
-                }}
+                onClick={() =>
+                  setTheme(resolvedTheme === "light" ? "dark" : "light")
+                }
                 variant="ghost"
                 size="sm"
                 className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
               >
                 {theme === "light" ? (
                   <>
-                    <Moon className="h-4 w-4" />
+                    <Moon className="h-5 w-5" />
                     Dark Mode
                   </>
                 ) : (
                   <>
-                    <Sun className="h-4 w-4" />
+                    <Sun className="h-5 w-5" />
                     Light Mode
                   </>
                 )}
@@ -187,17 +194,26 @@ export default function TrainersPage() {
           {/* Mobile Menu */}
           {mobileMenuOpen && (
             <div className="md:hidden mt-4 space-y-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`block text-gray-700 dark:text-gray-300 hover:text-[#D19537] ${
-                    item.active ? "font-semibold text-[#D19537]" : ""
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  pathname.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`block text-[14px] transition-colors ${
+                      isActive
+                        ? "font-semibold text-[#D19537]"
+                        : "text-gray-700 dark:text-gray-300 hover:text-[#D19537] dark:hover:text-[#D19537]"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
+
+              {/* Profile inside mobile menu */}
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <Link href="/profile">
                   <Button className="bg-transparent hover:bg-gray-50 dark:hover:bg-[#212121] flex items-center space-x-2 w-full justify-start">

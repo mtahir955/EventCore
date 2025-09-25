@@ -19,8 +19,10 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
 
 export default function EventCalendarPage() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState("June 2025");
   const [viewMode, setViewMode] = useState<"In Person" | "Virtual">(
@@ -36,137 +38,410 @@ export default function EventCalendarPage() {
   useEffect(() => setMounted(true), []);
 
   const navItems = [
-    { name: "Home", href: "/#", active: true },
+    { name: "Home", href: "/" },
     { name: "Events", href: "/events" },
     { name: "About", href: "/about-us" },
     { name: "Trainers", href: "/trainers" },
     { name: "Calendar", href: "/calendar" },
   ];
-
   const calendarDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const calendarData = [
-    [
-      { date: "", event: null },
-      { date: "", event: null },
-      { date: "", event: null },
-      { date: "", event: null },
-      { date: "", event: null },
-      { date: "", event: null },
-      { date: "1", event: null },
+  // ✅ Calendar Data for Upcoming Events
+  const calendarDataUpcoming = {
+    "In Person": [
+      [
+        { date: "1", event: null },
+        { date: "2", event: null },
+        { date: "3", event: "Tech & Innovation Expo" },
+        { date: "4", event: null },
+        { date: "5", event: "Starry Nights Music Fest" },
+        { date: "6", event: null },
+        { date: "7", event: null },
+      ],
+      [
+        { date: "8", event: null },
+        { date: "9", event: null },
+        { date: "10", event: null },
+        { date: "11", event: null },
+        { date: "12", event: "Fitness & Wellness Bootcamp" },
+        { date: "13", event: null },
+        { date: "14", event: null },
+      ],
+      [
+        { date: "15", event: null },
+        { date: "16", event: null },
+        { date: "17", event: "Fitness & Wellness Bootcamp" },
+        { date: "18", event: null },
+        { date: "19", event: null },
+        { date: "20", event: null },
+        { date: "21", event: null },
+      ],
+      [
+        { date: "22", event: null },
+        { date: "23", event: null },
+        { date: "24", event: "Fitness & Wellness Bootcamp" },
+        { date: "25", event: null },
+        { date: "26", event: null },
+        { date: "27", event: null },
+        { date: "28", event: null },
+      ],
+      [
+        { date: "29", event: "Fitness & Wellness Bootcamp" },
+        { date: "30", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+      ],
     ],
-    [
-      { date: "2", event: null },
-      { date: "3", event: null },
-      { date: "4", event: null },
-      { date: "5", event: "Starry Nights Music Fest" },
-      { date: "6", event: null },
-      { date: "7", event: null },
-      { date: "8", event: null },
+    Virtual: [
+      [
+        { date: "1", event: null },
+        { date: "2", event: "Leadership Webinar" },
+        { date: "3", event: null },
+        { date: "4", event: null },
+        { date: "5", event: null },
+        { date: "6", event: "E-Commerce Growth Summit" },
+        { date: "7", event: null },
+      ],
+      [
+        { date: "8", event: "Digital Marketing Masterclass" },
+        { date: "9", event: null },
+        { date: "10", event: null },
+        { date: "11", event: "Digital Marketing Masterclass" },
+        { date: "12", event: null },
+        { date: "13", event: null },
+        { date: "14", event: null },
+      ],
+      [
+        { date: "15", event: "Digital Marketing Masterclass" },
+        { date: "16", event: null },
+        { date: "17", event: null },
+        { date: "18", event: null },
+        { date: "19", event: null },
+        { date: "20", event: "Digital Marketing Masterclass" },
+        { date: "21", event: null },
+      ],
+      [
+        { date: "22", event: null },
+        { date: "23", event: null },
+        { date: "24", event: null },
+        { date: "25", event: "Digital Marketing Masterclass" },
+        { date: "26", event: null },
+        { date: "27", event: null },
+        { date: "28", event: null },
+      ],
+      [
+        { date: "29", event: "Digital Marketing Masterclass" },
+        { date: "30", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+      ],
     ],
-    [
-      { date: "9", event: null },
-      { date: "10", event: null },
-      { date: "11", event: "Starry Nights Music Fest" },
-      { date: "12", event: null },
-      { date: "13", event: null },
-      { date: "14", event: null },
-      { date: "15", event: "Starry Nights Music Fest" },
-    ],
-    [
-      { date: "16", event: null },
-      { date: "17", event: null },
-      { date: "18", event: null },
-      { date: "19", event: null },
-      { date: "20", event: "Starry Nights Music Fest" },
-      { date: "21", event: null },
-      { date: "22", event: null },
-    ],
-    [
-      { date: "23", event: null },
-      { date: "24", event: "Starry Nights Music Fest" },
-      { date: "25", event: null },
-      { date: "26", event: null },
-      { date: "27", event: null },
-      { date: "28", event: "Starry Nights Music Fest" },
-      { date: "29", event: null },
-    ],
-    [
-      { date: "30", event: "Starry Nights Music Fest" },
-      { date: "31", event: null },
-      { date: "1", event: null },
-      { date: "2", event: null },
-      { date: "3", event: null },
-      { date: "4", event: null },
-      { date: "5", event: null },
-    ],
-  ];
+  };
 
-  const events = [
-    {
-      id: 1,
-      title: "Starry Nights Music Fest",
-      host: "Eric Gryzbowski",
-      description:
-        "A magical evening under the stars with live bands, food stalls, and an eclectic crowd.",
-      location: "California",
-      date: "13 June 2025",
-      audience: "150 Audience",
-      time: "08:00 PM - 09:00 PM",
-      price: "$99.99",
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6045dd738fe45e727c1239fb3a7b66f91989e5b5.png-euYFHvA0eiDFcPn5MvsxUJNeao6exk.jpeg",
-    },
-    {
-      id: 2,
-      title: "Starry Nights Music Fest",
-      host: "Eric Gryzbowski",
-      description:
-        "A magical evening under the stars with live bands, food stalls, and an eclectic crowd.",
-      location: "California",
-      date: "13 June 2025",
-      audience: "150 Audience",
-      time: "08:00 PM - 09:00 PM",
-      price: "$99.99",
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7ff2ccd6179f4d0604a066b8fd23a5f4933e4077-kzHAP0yIAnHd4zKsQTx2169zhhLK4P.png",
-    },
-    {
-      id: 3,
-      title: "Starry Nights Music Fest",
-      host: "Eric Gryzbowski",
-      description:
-        "A magical evening under the stars with live bands, food stalls, and an eclectic crowd.",
-      location: "California",
-      date: "13 June 2025",
-      audience: "150 Audience",
-      time: "08:00 PM - 09:00 PM",
-      price: "$99.99",
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b112e96ec04d346fcc66b1d1159b2a1e15f9c927-6NVfEMTykDajeRTeLDIPsuxf92SgG1.png",
-    },
-    {
-      id: 4,
-      title: "Starry Nights Music Fest",
-      host: "Eric Gryzbowski",
-      description:
-        "A magical evening under the stars with live bands, food stalls, and an eclectic crowd.",
-      location: "California",
-      date: "13 June 2025",
-      audience: "150 Audience",
-      time: "08:00 PM - 09:00 PM",
-      price: "$99.99",
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b58c2eee2dce26882ed2a1a5fce4c8580b6e521f.png-1tFyDRO2XhLNO0bDbKI7k5VtDMFlFM.jpeg",
-    },
-  ];
+  // ✅ Calendar Data for Previous Events
+  const calendarDataPrevious = {
+    "In Person": [
+      [
+        { date: "1", event: null },
+        { date: "2", event: null },
+        { date: "3", event: "Spring Wellness Retreat" },
+        { date: "4", event: null },
+        { date: "5", event: "Startup Pitch Night" },
+        { date: "6", event: null },
+        { date: "7", event: null },
+      ],
+      [
+        { date: "8", event: "Art & Culture Fair" },
+        { date: "9", event: null },
+        { date: "10", event: "Art & Culture Fair" },
+        { date: "11", event: null },
+        { date: "12", event: null },
+        { date: "13", event: null },
+        { date: "14", event: null },
+      ],
+      [
+        { date: "15", event: null },
+        { date: "16", event: null },
+        { date: "17", event: null },
+        { date: "18", event: null },
+        { date: "19", event: null },
+        { date: "20", event: "Art & Culture Fair" },
+        { date: "21", event: null },
+      ],
+      [
+        { date: "22", event: null },
+        { date: "23", event: null },
+        { date: "24", event: null },
+        { date: "25", event: "Art & Culture Fair" },
+        { date: "26", event: null },
+        { date: "27", event: null },
+        { date: "28", event: null },
+      ],
+      [
+        { date: "29", event: "Art & Culture Fair" },
+        { date: "30", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+      ],
+    ],
+    Virtual: [
+      [
+        { date: "1", event: "Mindset Mastery Workshop" },
+        { date: "2", event: null },
+        { date: "3", event: "AI for Beginners" },
+        { date: "4", event: null },
+        { date: "5", event: null },
+        { date: "6", event: null },
+        { date: "7", event: null },
+      ],
+      [
+        { date: "8", event: null },
+        { date: "9", event: null },
+        { date: "10", event: null },
+        { date: "11", event: "Remote Work Best Practices" },
+        { date: "12", event: null },
+        { date: "13", event: null },
+        { date: "14", event: null },
+      ],
+      [
+        { date: "15", event: null },
+        { date: "16", event: null },
+        { date: "17", event: null },
+        { date: "18", event: null },
+        { date: "19", event: null },
+        { date: "20", event: null },
+        { date: "21", event: null },
+      ],
+      [
+        { date: "22", event: null },
+        { date: "23", event: null },
+        { date: "24", event: null },
+        { date: "25", event: null },
+        { date: "26", event: "Remote Work Best Practices" },
+        { date: "27", event: null },
+        { date: "28", event: null },
+      ],
+      [
+        { date: "29", event: null },
+        { date: "30", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+        { date: "", event: null },
+      ],
+    ],
+  };
+
+  // ✅ Pick the right calendar data
+  const calendarData =
+    activeTab === "Upcoming Event"
+      ? calendarDataUpcoming[viewMode]
+      : calendarDataPrevious[viewMode];
+
+  // ✅ Upcoming Events Dataset
+  const upcomingEvents = {
+    "In Person": [
+      {
+        id: 1,
+        title: "Starry Nights Music Fest",
+        host: "Eric Gryzbowski",
+        description:
+          "A magical evening under the stars with live bands, food stalls, and an eclectic crowd.",
+        location: "California",
+        date: "13 June 2025",
+        audience: "150 Audience",
+        time: "08:00 PM - 09:00 PM",
+        price: "$99.99",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6045dd738fe45e727c1239fb3a7b66f91989e5b5.png-euYFHvA0eiDFcPn5MvsxUJNeao6exk.jpeg",
+      },
+      {
+        id: 5,
+        title: "Tech & Innovation Expo",
+        host: "Michael Lee",
+        description:
+          "Showcasing the latest innovations in AI, robotics, and startups.",
+        location: "San Francisco",
+        date: "18 June 2025",
+        audience: "2,000 Audience",
+        time: "10:00 AM - 06:00 PM",
+        price: "$149.00",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6045dd738fe45e727c1239fb3a7b66f91989e5b5.png-euYFHvA0eiDFcPn5MvsxUJNeao6exk.jpeg",
+      },
+      {
+        id: 6,
+        title: "Fitness & Wellness Bootcamp",
+        host: "Anna Wilson",
+        description:
+          "A full-day in-person bootcamp designed to boost energy, fitness, and health.",
+        location: "Chicago",
+        date: "25 June 2025",
+        audience: "300 Audience",
+        time: "07:00 AM - 04:00 PM",
+        price: "$59.00",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6045dd738fe45e727c1239fb3a7b66f91989e5b5.png-euYFHvA0eiDFcPn5MvsxUJNeao6exk.jpeg",
+      },
+    ],
+    Virtual: [
+      {
+        id: 2,
+        title: "Leadership Webinar",
+        host: "Sarah Johnson",
+        description:
+          "Join our exclusive online session on modern leadership skills.",
+        location: "Online - Zoom",
+        date: "20 June 2025",
+        audience: "500 Audience",
+        time: "06:00 PM - 07:30 PM",
+        price: "Free",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7ff2ccd6179f4d0604a066b8fd23a5f4933e4077-kzHAP0yIAnHd4zKsQTx2169zhhLK4P.png",
+      },
+      {
+        id: 7,
+        title: "E-Commerce Growth Summit",
+        host: "David Kim",
+        description:
+          "Learn advanced strategies to scale your e-commerce business worldwide.",
+        location: "Online - Webinar",
+        date: "22 June 2025",
+        audience: "1,200 Audience",
+        time: "05:00 PM - 08:00 PM",
+        price: "$29.99",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6045dd738fe45e727c1239fb3a7b66f91989e5b5.png-euYFHvA0eiDFcPn5MvsxUJNeao6exk.jpeg",
+      },
+      {
+        id: 8,
+        title: "Digital Marketing Masterclass",
+        host: "Laura Green",
+        description:
+          "An intensive workshop covering SEO, social media, and paid ads.",
+        location: "Online - Live",
+        date: "27 June 2025",
+        audience: "750 Audience",
+        time: "03:00 PM - 07:00 PM",
+        price: "$39.99",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6045dd738fe45e727c1239fb3a7b66f91989e5b5.png-euYFHvA0eiDFcPn5MvsxUJNeao6exk.jpeg",
+      },
+    ],
+  };
+
+  // ✅ Previous Events Dataset
+  const previousEvents = {
+    "In Person": [
+      {
+        id: 3,
+        title: "Spring Wellness Retreat",
+        host: "John Smith",
+        description: "An immersive retreat focused on health and mindfulness.",
+        location: "New York",
+        date: "12 March 2025",
+        audience: "120 Audience",
+        time: "09:00 AM - 05:00 PM",
+        price: "$49.99",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b112e96ec04d346fcc66b1d1159b2a1e15f9c927-6NVfEMTykDajeRTeLDIPsuxf92SgG1.png",
+      },
+      {
+        id: 9,
+        title: "Startup Pitch Night",
+        host: "Venture Capital Hub",
+        description:
+          "Early-stage startups pitched their ideas to investors and mentors.",
+        location: "Austin",
+        date: "10 February 2025",
+        audience: "350 Audience",
+        time: "06:00 PM - 09:00 PM",
+        price: "Free",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6045dd738fe45e727c1239fb3a7b66f91989e5b5.png-euYFHvA0eiDFcPn5MvsxUJNeao6exk.jpeg",
+      },
+      {
+        id: 10,
+        title: "Art & Culture Fair",
+        host: "City Arts Council",
+        description:
+          "Celebrating diverse art, music, and cultural performances.",
+        location: "Boston",
+        date: "20 January 2025",
+        audience: "1,000 Audience",
+        time: "11:00 AM - 07:00 PM",
+        price: "$10.00",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6045dd738fe45e727c1239fb3a7b66f91989e5b5.png-euYFHvA0eiDFcPn5MvsxUJNeao6exk.jpeg",
+      },
+    ],
+    Virtual: [
+      {
+        id: 4,
+        title: "Mindset Mastery Online Workshop",
+        host: "Emma Davis",
+        description:
+          "A recorded workshop teaching how to master your mindset for success.",
+        location: "Online - Recorded",
+        date: "10 April 2025",
+        audience: "800 Audience",
+        time: "Anytime (Recorded)",
+        price: "$19.99",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b58c2eee2dce26882ed2a1a5fce4c8580b6e521f.png-1tFyDRO2XhLNO0bDbKI7k5VtDMFlFM.jpeg",
+      },
+      {
+        id: 11,
+        title: "AI for Beginners",
+        host: "Tech Academy",
+        description:
+          "An online course introducing artificial intelligence basics to non-techies.",
+        location: "Online - Udemy",
+        date: "15 March 2025",
+        audience: "2,500 Audience",
+        time: "Self-paced",
+        price: "$14.99",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6045dd738fe45e727c1239fb3a7b66f91989e5b5.png-euYFHvA0eiDFcPn5MvsxUJNeao6exk.jpeg",
+      },
+      {
+        id: 12,
+        title: "Remote Work Best Practices",
+        host: "Global HR Forum",
+        description:
+          "Panel discussion on effective collaboration in distributed teams.",
+        location: "Online - Live",
+        date: "28 February 2025",
+        audience: "1,800 Audience",
+        time: "04:00 PM - 06:00 PM",
+        price: "Free",
+        image:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6045dd738fe45e727c1239fb3a7b66f91989e5b5.png-euYFHvA0eiDFcPn5MvsxUJNeao6exk.jpeg",
+      },
+    ],
+  };
+  // Choose dataset based on tab + viewMode
+  const events =
+    activeTab === "Upcoming Event"
+      ? upcomingEvents[viewMode]
+      : previousEvents[viewMode];
 
   return (
     <div className="min-h-screen bg-white dark:bg-black max-w-[1440px] mx-auto">
       {/* Header */}
       <header className="bg-white dark:bg-[#212121] border-b border-gray-200 dark:border-gray-700 px-4 py-1">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Left: Logo */}
             <div className="flex items-center space-x-3">
               <Image
                 src="/images/ec-logo.png"
@@ -179,47 +454,51 @@ export default function EventCalendarPage() {
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center space-x-12">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`text-[14px] font-medium transition-colors ${
-                    item.active
-                      ? "text-[#D19537] border-b-2 border-[#D19537] pb-1"
-                      : "text-gray-700 dark:text-white hover:text-[#D19537] dark:hover:text-[#D19537]"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  pathname.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`text-[14px] font-medium transition-colors ${
+                      isActive
+                        ? "text-[#D19537] border-b-2 border-[#D19537] pb-1"
+                        : "text-gray-700 dark:text-white hover:text-[#D19537] dark:hover:text-[#D19537]"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* Right Side Desktop */}
             <div className="hidden md:flex items-center space-x-4">
-              {mounted && (
-                <Button
-                  onClick={() => {
-                    setTheme(resolvedTheme === "light" ? "dark" : "light");
-                  }}
-                  variant="ghost"
-                  size="sm"
-                  className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
-                >
-                  {theme === "light" ? (
-                    <>
-                      <Moon className="h-4 w-4" />
-                      Dark Mode
-                    </>
-                  ) : (
-                    <>
-                      <Sun className="h-4 w-4" />
-                      Light Mode
-                    </>
-                  )}
-                </Button>
-              )}
+              <Button
+                onClick={() =>
+                  setTheme(resolvedTheme === "light" ? "dark" : "light")
+                }
+                variant="ghost"
+                size="sm"
+                className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
+              >
+                {theme === "light" ? (
+                  <>
+                    <Moon className="h-4 w-4" />
+                    Dark Mode
+                  </>
+                ) : (
+                  <>
+                    <Sun className="h-4 w-4" />
+                    Light Mode
+                  </>
+                )}
+              </Button>
+
               <Link href="/profile">
-                <Button className="bg-transparent hover:bg-white dark:hover:bg-black flex items-center space-x-2">
+                <Button className="bg-transparent hover:bg-white dark:hover:bg-[#212121] flex items-center space-x-2">
                   <Avatar className="h-8 w-8">
                     <AvatarImage
                       src="/images/profile-photo.jpg"
@@ -234,33 +513,32 @@ export default function EventCalendarPage() {
               </Link>
             </div>
 
-            {/* Mobile */}
+            {/* Mobile Hamburger */}
             <div className="flex md:hidden items-center space-x-4">
-              {mounted && (
-                <Button
-                  onClick={() => {
-                    setTheme(resolvedTheme === "light" ? "dark" : "light");
-                  }}
-                  variant="ghost"
-                  size="sm"
-                  className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
-                >
-                  {theme === "light" ? (
-                    <>
-                      <Moon className="h-4 w-4" />
-                      Dark Mode
-                    </>
-                  ) : (
-                    <>
-                      <Sun className="h-4 w-4" />
-                      Light Mode
-                    </>
-                  )}
-                </Button>
-              )}
+              <Button
+                onClick={() =>
+                  setTheme(resolvedTheme === "light" ? "dark" : "light")
+                }
+                variant="ghost"
+                size="sm"
+                className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
+              >
+                {theme === "light" ? (
+                  <>
+                    <Moon className="h-5 w-5" />
+                    Dark Mode
+                  </>
+                ) : (
+                  <>
+                    <Sun className="h-5 w-5" />
+                    Light Mode
+                  </>
+                )}
+              </Button>
+
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-gray-700 dark:text-white"
+                className="text-gray-700 dark:text-gray-300"
               >
                 {mobileMenuOpen ? (
                   <X className="h-6 w-6" />
@@ -274,17 +552,26 @@ export default function EventCalendarPage() {
           {/* Mobile Menu */}
           {mobileMenuOpen && (
             <div className="md:hidden mt-4 space-y-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`block text-gray-700 dark:text-white hover:text-[#D19537] ${
-                    item.active ? "font-semibold text-[#D19537]" : ""
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  pathname.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`block text-[14px] transition-colors ${
+                      isActive
+                        ? "font-semibold text-[#D19537]"
+                        : "text-gray-700 dark:text-gray-300 hover:text-[#D19537] dark:hover:text-[#D19537]"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
+
+              {/* Profile inside mobile menu */}
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <Link href="/profile">
                   <Button className="bg-transparent hover:bg-gray-50 dark:hover:bg-[#212121] flex items-center space-x-2 w-full justify-start">
