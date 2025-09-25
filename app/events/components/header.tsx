@@ -60,19 +60,24 @@ export function Header() {
           <div className="hidden md:flex items-center space-x-4">
             {mounted && (
               <Button
-                onClick={() =>
-                  setTheme(resolvedTheme === "light" ? "dark" : "light")
-                }
+                onClick={() => {
+                  setTheme(resolvedTheme === "light" ? "dark" : "light");
+                }}
                 variant="ghost"
                 size="sm"
-                className="text-gray-600 dark:text-gray-300"
+                className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
               >
                 {theme === "light" ? (
-                  <Moon className="h-4 w-4 mr-2" />
+                  <>
+                    <Moon className="h-4 w-4" />
+                    Dark Mode
+                  </>
                 ) : (
-                  <Sun className="h-4 w-4 mr-2" />
+                  <>
+                    <Sun className="h-4 w-4" />
+                    Light Mode
+                  </>
                 )}
-                Dark Mode
               </Button>
             )}
             <Link href="/profile">
@@ -92,17 +97,23 @@ export function Header() {
           <div className="flex md:hidden items-center space-x-4">
             {mounted && (
               <Button
-                onClick={() =>
-                  setTheme(resolvedTheme === "light" ? "dark" : "light")
-                }
+                onClick={() => {
+                  setTheme(resolvedTheme === "light" ? "dark" : "light");
+                }}
                 variant="ghost"
-                size="icon"
-                className="text-gray-600 dark:text-gray-300"
+                size="sm"
+                className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
               >
                 {theme === "light" ? (
-                  <Moon className="h-5 w-5" />
+                  <>
+                    <Moon className="h-4 w-4" />
+                    Dark Mode
+                  </>
                 ) : (
-                  <Sun className="h-5 w-5" />
+                  <>
+                    <Sun className="h-4 w-4" />
+                    Light Mode
+                  </>
                 )}
               </Button>
             )}

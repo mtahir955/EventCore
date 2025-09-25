@@ -64,19 +64,24 @@ export default function ProfilePage() {
             <div className="hidden md:flex items-center space-x-4">
               {mounted && (
                 <Button
-                  onClick={() =>
-                    setTheme(resolvedTheme === "light" ? "dark" : "light")
-                  }
+                  onClick={() => {
+                    setTheme(resolvedTheme === "light" ? "dark" : "light");
+                  }}
                   variant="ghost"
                   size="sm"
-                  className="text-gray-600 dark:text-gray-300"
+                  className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
                 >
                   {theme === "light" ? (
-                    <Moon className="h-4 w-4 mr-2" />
+                    <>
+                      <Moon className="h-4 w-4" />
+                      Dark Mode
+                    </>
                   ) : (
-                    <Sun className="h-4 w-4 mr-2" />
+                    <>
+                      <Sun className="h-4 w-4" />
+                      Light Mode
+                    </>
                   )}
-                  Dark Mode
                 </Button>
               )}
               <Button className="bg-transparent hover:bg-white dark:hover:bg-black flex items-center space-x-2">
@@ -94,17 +99,23 @@ export default function ProfilePage() {
             <div className="flex md:hidden items-center space-x-4">
               {mounted && (
                 <Button
-                  onClick={() =>
-                    setTheme(resolvedTheme === "light" ? "dark" : "light")
-                  }
+                  onClick={() => {
+                    setTheme(resolvedTheme === "light" ? "dark" : "light");
+                  }}
                   variant="ghost"
-                  size="icon"
-                  className="text-gray-600 dark:text-gray-300"
+                  size="sm"
+                  className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
                 >
                   {theme === "light" ? (
-                    <Moon className="h-5 w-5" />
+                    <>
+                      <Moon className="h-4 w-4" />
+                      Dark Mode
+                    </>
                   ) : (
-                    <Sun className="h-5 w-5" />
+                    <>
+                      <Sun className="h-4 w-4" />
+                      Light Mode
+                    </>
                   )}
                 </Button>
               )}

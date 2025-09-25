@@ -60,11 +60,21 @@ export function Header() {
               }}
               variant="ghost"
               size="sm"
-              className="text-gray-600"
+              className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
             >
-              {theme === "light" ? <Moon /> : <Sun />}
-              Dark Mode
+              {theme === "light" ? (
+                <>
+                  <Moon className="h-4 w-4" />
+                  Dark Mode
+                </>
+              ) : (
+                <>
+                  <Sun className="h-4 w-4" />
+                  Light Mode
+                </>
+              )}
             </Button>
+
             <Link href="/profile">
               <Button className="bg-transparent hover:bg-white dark:hover:bg-[#D19537] flex items-center space-x-2">
                 <Avatar className="h-8 w-8">
@@ -80,9 +90,27 @@ export function Header() {
 
           {/* Mobile Hamburger */}
           <div className="flex md:hidden items-center space-x-4">
-            <Button variant="ghost" size="icon" className="text-gray-600">
-              <Moon className="h-5 w-5" />
+            <Button
+              onClick={() => {
+                setTheme(resolvedTheme === "light" ? "dark" : "light");
+              }}
+              variant="ghost"
+              size="sm"
+              className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
+            >
+              {theme === "light" ? (
+                <>
+                  <Moon className="h-4 w-4" />
+                  Dark Mode
+                </>
+              ) : (
+                <>
+                  <Sun className="h-4 w-4" />
+                  Light Mode
+                </>
+              )}
             </Button>
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="text-gray-700"

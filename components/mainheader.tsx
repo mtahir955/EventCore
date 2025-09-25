@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Moon, Menu, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Moon, Menu, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { resolvedTheme, theme, setTheme } = useTheme();
 
   return (
@@ -61,14 +61,27 @@ export function Header() {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center space-x-6">
-          <Button 
-          onClick={() =>{
-            setTheme(resolvedTheme === "light" ? "dark" : "light");
-          }}
-          variant="ghost" size="sm" className="text-gray-600">
-            {theme === "light" ? <Moon/> : <Sun/>}
-            Dark Mode
+          <Button
+            onClick={() => {
+              setTheme(resolvedTheme === "light" ? "dark" : "light");
+            }}
+            variant="ghost"
+            size="sm"
+            className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
+          >
+            {theme === "light" ? (
+              <>
+                <Moon className="h-4 w-4" />
+                Dark Mode
+              </>
+            ) : (
+              <>
+                <Sun className="h-4 w-4" />
+                Light Mode
+              </>
+            )}
           </Button>
+
           <Link
             href="/sign-up"
             className="bg-white text-[#D19537] outline px-8 py-2 rounded-full font-medium"
@@ -77,18 +90,36 @@ export function Header() {
           </Link>
           <Link
             href="/sign-up"
-            className="bg-[#D19537] hover:bg-[#B8832F] text-white px-8 py-2 rounded-full font-medium">
+            className="bg-[#D19537] hover:bg-[#B8832F] text-white px-8 py-2 rounded-full font-medium"
+          >
             Start Now
-          
           </Link>
         </div>
 
         {/* Mobile Right Section */}
         <div className="flex md:hidden items-center space-x-4">
           {/* Theme toggle icon */}
-          <Button variant="ghost" size="icon" className="text-gray-600">
-            <Moon className="h-5 w-5" />
+          <Button
+            onClick={() => {
+              setTheme(resolvedTheme === "light" ? "dark" : "light");
+            }}
+            variant="ghost"
+            size="sm"
+            className="text-gray-600 dark:text-gray-300 flex items-center gap-2"
+          >
+            {theme === "light" ? (
+              <>
+                <Moon className="h-4 w-4" />
+                Dark Mode
+              </>
+            ) : (
+              <>
+                <Sun className="h-4 w-4" />
+                Light Mode
+              </>
+            )}
           </Button>
+
           {/* Hamburger Menu */}
           <Button
             variant="ghost"
@@ -142,16 +173,14 @@ export function Header() {
             >
               Login
             </Link>
-            <Link 
-              href="/sign-up"
-            >
-            <Button className="bg-[#D19537] hover:bg-[#B8832F] text-white px-6 py-2 rounded-full font-medium w-full">
-              Start Now
-            </Button>
+            <Link href="/sign-up">
+              <Button className="bg-[#D19537] hover:bg-[#B8832F] text-white px-6 py-2 rounded-full font-medium w-full">
+                Start Now
+              </Button>
             </Link>
           </div>
         </div>
       )}
     </header>
-  )
+  );
 }
