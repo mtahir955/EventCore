@@ -32,6 +32,10 @@ export default function EventCalendarPage() {
     "Upcoming Event" | "Previous Event"
   >("Upcoming Event");
 
+  // ✅ Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const eventsPerPage = 2;
+
   // ✅ Hydration-safe dark mode
   const { resolvedTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -44,7 +48,9 @@ export default function EventCalendarPage() {
     { name: "Trainers", href: "/trainers" },
     { name: "Calendar", href: "/calendar" },
   ];
+
   const calendarDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
   // ✅ Calendar Data for Upcoming Events
   const calendarDataUpcoming = {
     "In Person": [
@@ -435,6 +441,17 @@ export default function EventCalendarPage() {
       ? upcomingEvents[viewMode]
       : previousEvents[viewMode];
 
+  // ✅ Pagination Logic
+  const totalPages = Math.ceil(events.length / eventsPerPage);
+  const startIndex = (currentPage - 1) * eventsPerPage;
+  const endIndex = startIndex + eventsPerPage;
+  const currentEvents = events.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen bg-white dark:bg-black max-w-[1440px] mx-auto">
       {/* Header */}
@@ -697,7 +714,10 @@ export default function EventCalendarPage() {
         <div className="mb-8">
           <div className="flex space-x-6 sm:space-x-8 border-b border-gray-200 dark:border-gray-700">
             <button
-              onClick={() => setActiveTab("Upcoming Event")}
+              onClick={() => {
+                setActiveTab("Upcoming Event");
+                setCurrentPage(1);
+              }}
               className={`pb-3 sm:pb-4 text-base sm:text-lg font-medium ${
                 activeTab === "Upcoming Event"
                   ? "text-[#D19537] border-b-2 border-[#D19537]"
@@ -707,7 +727,10 @@ export default function EventCalendarPage() {
               Upcoming Event
             </button>
             <button
-              onClick={() => setActiveTab("Previous Event")}
+              onClick={() => {
+                setActiveTab("Previous Event");
+                setCurrentPage(1);
+              }}
               className={`pb-3 sm:pb-4 text-base sm:text-lg font-medium ${
                 activeTab === "Previous Event"
                   ? "text-[#D19537] border-b-2 border-[#D19537]"
@@ -719,49 +742,46 @@ export default function EventCalendarPage() {
           </div>
         </div>
 
-        {/* Event Cards */}
+        {/* Event Cards with Pagination */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-16">
-          {events.map((event) => (
+          {currentEvents.map((event) => (
             <Card
               key={event.id}
               className="overflow-hidden relative bg-white dark:bg-[#212121] border border-gray-200 dark:border-gray-700"
             >
               <div className="relative">
                 <img
-                  src={event.image || "/placeholder.svg"}
+                  src={event.image}
                   alt={event.title}
                   className="w-full h-48 sm:h-64 object-cover"
                 />
-                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white dark:bg-black px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium text-black dark:text-white">
+                <div className="absolute top-3 right-3 bg-white dark:bg-black px-3 py-1 rounded-full text-xs sm:text-sm font-medium text-black dark:text-white">
                   {event.price}
                 </div>
-                <button className="absolute top-3 left-3 sm:top-4 sm:left-4 w-7 h-7 sm:w-8 sm:h-8 bg-white dark:bg-black rounded-full flex items-center justify-center">
-                  <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-black dark:text-white" />
+                <button className="absolute top-3 left-3 bg-white dark:bg-black w-8 h-8 rounded-full flex items-center justify-center">
+                  <Heart className="w-4 h-4 text-black dark:text-white" />
                 </button>
               </div>
-              <div className="p-4 sm:p-6">
-                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-2">
+              <div className="p-6">
+                <div className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                   Host By: {event.host}
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-black dark:text-white">
+                <h3 className="text-xl font-bold mb-2 text-black dark:text-white">
                   {event.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-3 sm:mb-4">
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
                   {event.description}
                 </p>
-                <div className="flex flex-wrap gap-3 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
-                  <div className="flex items-center space-x-1">
-                    <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
-                    <span>{event.location}</span>
+                <div className="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-300">
+                  <div className="flex items-center gap-1">
+                    <MapPin className="w-4 h-4" /> {event.location}
                   </div>
                   <div>{event.date}</div>
-                  <div className="flex items-center space-x-1">
-                    <Users className="w-3 h-3 sm:w-4 sm:h-4" />
-                    <span>{event.audience}</span>
+                  <div className="flex items-center gap-1">
+                    <Users className="w-4 h-4" /> {event.audience}
                   </div>
-                  <div className="flex items-center space-x-1">
-                    <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
-                    <span>{event.time}</span>
+                  <div className="flex items-center gap-1">
+                    <Clock className="w-4 h-4" /> {event.time}
                   </div>
                 </div>
               </div>
@@ -769,25 +789,46 @@ export default function EventCalendarPage() {
           ))}
         </div>
 
-        {/* Pagination */}
-        <div className="flex justify-center space-x-2 mb-16 text-sm sm:text-base">
-          <button className="w-8 h-8 bg-[#D19537] text-white rounded flex items-center justify-center">
-            1
-          </button>
-          <button className="w-8 h-8 bg-gray-100 dark:bg-[#212121] text-gray-600 dark:text-gray-300 rounded flex items-center justify-center">
-            2
-          </button>
-          <button className="w-8 h-8 bg-gray-100 dark:bg-[#212121] text-gray-600 dark:text-gray-300 rounded flex items-center justify-center">
-            3
-          </button>
-          <span className="flex items-center px-2">...</span>
-          <button className="w-8 h-8 bg-gray-100 dark:bg-[#212121] text-gray-600 dark:text-gray-300 rounded flex items-center justify-center">
-            67
-          </button>
-          <button className="w-8 h-8 bg-gray-100 dark:bg-[#212121] text-gray-600 dark:text-gray-300 rounded flex items-center justify-center">
-            68
-          </button>
-        </div>
+        {/* ✅ Pagination Section */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center space-x-2 mb-16">
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={currentPage === 1}
+              onClick={() => handlePageChange(currentPage - 1)}
+              className="w-8 h-8 rounded text-gray-600 dark:text-gray-300"
+            >
+              ‹
+            </Button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <Button
+                key={page}
+                variant={page === currentPage ? "default" : "outline"}
+                size="sm"
+                onClick={() => handlePageChange(page)}
+                className={`w-8 h-8 rounded ${
+                  page === currentPage
+                    ? "bg-[#D19537] text-white"
+                    : "bg-gray-100 dark:bg-[#212121] text-gray-600 dark:text-gray-300"
+                }`}
+              >
+                {page}
+              </Button>
+            ))}
+
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={currentPage === totalPages}
+              onClick={() => handlePageChange(currentPage + 1)}
+              className="w-8 h-8 rounded text-gray-600 dark:text-gray-300"
+            >
+              ›
+            </Button>
+          </div>
+        )}
       </main>
 
       {/* Footer */}

@@ -97,6 +97,38 @@ const events = [
     status: "Completed",
     mode: "Online",
   },
+  {
+    id: 7,
+    title: "Creative Branding Workshop",
+    description:
+      "A hands-on session for designers and entrepreneurs to build strong brand identities.",
+    image:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/event-branding-workshop.png",
+    price: "$49.99",
+    host: "Lily James",
+    location: "Los Angeles",
+    date: "1 September 2025",
+    audience: "150 Audience",
+    time: "11:00 AM - 04:00 PM",
+    status: "Upcoming",
+    mode: "In-Person",
+  },
+  {
+    id: 8,
+    title: "Remote Work Mastery",
+    description:
+      "Learn productivity hacks and communication tools for distributed teams.",
+    image:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/event-remote-work.png",
+    price: "Free",
+    host: "Jason Clark",
+    location: "Online",
+    date: "3 September 2025",
+    audience: "800 Audience",
+    time: "06:00 PM - 07:30 PM",
+    status: "Upcoming",
+    mode: "Online",
+  },
 ];
 
 export function EventsSection() {
@@ -107,6 +139,10 @@ export function EventsSection() {
     mode: "Mode",
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const eventsPerPage = 4;
+
+  // ✅ Filter Logic
   const filteredEvents = events.filter((event) => {
     return (
       (filters.status === "Event Status" || event.status === filters.status) &&
@@ -116,8 +152,21 @@ export function EventsSection() {
       (filters.mode === "Mode" || event.mode === filters.mode)
     );
   });
+
+  // ✅ Pagination Logic
+  const totalPages = Math.ceil(filteredEvents.length / eventsPerPage);
+  const startIndex = (currentPage - 1) * eventsPerPage;
+  const endIndex = startIndex + eventsPerPage;
+  const currentEvents = filteredEvents.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <main className="mx-auto max-w-7xl px-6 py-12">
+      {/* Heading */}
       <div className="mb-8">
         <div className="inline-flex items-center rounded-full outline px-3 py-2 text-sm">
           <span className="mr-2 h-2 w-2 rounded-full bg-[#D19537]"></span>
@@ -140,8 +189,8 @@ export function EventsSection() {
 
       {/* Events Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        {filteredEvents.length > 0 ? (
-          filteredEvents.map((event) => (
+        {currentEvents.length > 0 ? (
+          currentEvents.map((event) => (
             <EventCard key={event.id} event={event} />
           ))
         ) : (
@@ -151,7 +200,14 @@ export function EventsSection() {
         )}
       </div>
 
-      <Pagination />
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </main>
   );
 }
