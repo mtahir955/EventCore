@@ -142,7 +142,7 @@ export function Footer() {
       <div className="bg-[#D19537] py-4">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <p className="text-white text-sm">
-            ©2025 Viago. All rights reserved.
+            ©2025 Event Core. All rights reserved.
           </p>
         </div>
       </div>

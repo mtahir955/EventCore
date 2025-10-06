@@ -510,7 +510,7 @@ export default function TermsOfService() {
       {/* Copyright */}
       <div className="bg-[#D19537] py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-white">©2025 Visgo. All rights reserved.</p>
+          <p className="text-white">©2025 Event Core. All rights reserved.</p>
         </div>
       </div>
     </div>
