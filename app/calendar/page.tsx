@@ -259,12 +259,10 @@ export default function EventCalendarPage() {
       {
         id: 1,
         title: "Starry Nights Music Fest",
-        host: "Eric Gryzbowski",
         description:
           "A magical evening under the stars with live bands, food stalls, and an eclectic crowd.",
         location: "California",
         date: "13 June 2025",
-        audience: "150 Audience",
         time: "08:00 PM - 09:00 PM",
         price: "$99.99",
         image:
@@ -273,12 +271,10 @@ export default function EventCalendarPage() {
       {
         id: 5,
         title: "Tech & Innovation Expo",
-        host: "Michael Lee",
         description:
           "Showcasing the latest innovations in AI, robotics, and startups.",
         location: "San Francisco",
         date: "18 June 2025",
-        audience: "2,000 Audience",
         time: "10:00 AM - 06:00 PM",
         price: "$149.00",
         image:
@@ -287,12 +283,10 @@ export default function EventCalendarPage() {
       {
         id: 6,
         title: "Fitness & Wellness Bootcamp",
-        host: "Anna Wilson",
         description:
           "A full-day in-person bootcamp designed to boost energy, fitness, and health.",
         location: "Chicago",
         date: "25 June 2025",
-        audience: "300 Audience",
         time: "07:00 AM - 04:00 PM",
         price: "$59.00",
         image:
@@ -303,12 +297,10 @@ export default function EventCalendarPage() {
       {
         id: 2,
         title: "Leadership Webinar",
-        host: "Sarah Johnson",
         description:
           "Join our exclusive online session on modern leadership skills.",
         location: "Online - Zoom",
         date: "20 June 2025",
-        audience: "500 Audience",
         time: "06:00 PM - 07:30 PM",
         price: "Free",
         image:
@@ -317,12 +309,10 @@ export default function EventCalendarPage() {
       {
         id: 7,
         title: "E-Commerce Growth Summit",
-        host: "David Kim",
         description:
           "Learn advanced strategies to scale your e-commerce business worldwide.",
         location: "Online - Webinar",
         date: "22 June 2025",
-        audience: "1,200 Audience",
         time: "05:00 PM - 08:00 PM",
         price: "$29.99",
         image:
@@ -331,12 +321,10 @@ export default function EventCalendarPage() {
       {
         id: 8,
         title: "Digital Marketing Masterclass",
-        host: "Laura Green",
         description:
           "An intensive workshop covering SEO, social media, and paid ads.",
         location: "Online - Live",
         date: "27 June 2025",
-        audience: "750 Audience",
         time: "03:00 PM - 07:00 PM",
         price: "$39.99",
         image:
@@ -351,11 +339,9 @@ export default function EventCalendarPage() {
       {
         id: 3,
         title: "Spring Wellness Retreat",
-        host: "John Smith",
         description: "An immersive retreat focused on health and mindfulness.",
         location: "New York",
         date: "12 March 2025",
-        audience: "120 Audience",
         time: "09:00 AM - 05:00 PM",
         price: "$49.99",
         image:
@@ -364,12 +350,10 @@ export default function EventCalendarPage() {
       {
         id: 9,
         title: "Startup Pitch Night",
-        host: "Venture Capital Hub",
         description:
           "Early-stage startups pitched their ideas to investors and mentors.",
         location: "Austin",
         date: "10 February 2025",
-        audience: "350 Audience",
         time: "06:00 PM - 09:00 PM",
         price: "Free",
         image:
@@ -378,12 +362,10 @@ export default function EventCalendarPage() {
       {
         id: 10,
         title: "Art & Culture Fair",
-        host: "City Arts Council",
         description:
           "Celebrating diverse art, music, and cultural performances.",
         location: "Boston",
         date: "20 January 2025",
-        audience: "1,000 Audience",
         time: "11:00 AM - 07:00 PM",
         price: "$10.00",
         image:
@@ -394,12 +376,10 @@ export default function EventCalendarPage() {
       {
         id: 4,
         title: "Mindset Mastery Online Workshop",
-        host: "Emma Davis",
         description:
           "A recorded workshop teaching how to master your mindset for success.",
         location: "Online - Recorded",
         date: "10 April 2025",
-        audience: "800 Audience",
         time: "Anytime (Recorded)",
         price: "$19.99",
         image:
@@ -408,12 +388,10 @@ export default function EventCalendarPage() {
       {
         id: 11,
         title: "AI for Beginners",
-        host: "Tech Academy",
         description:
           "An online course introducing artificial intelligence basics to non-techies.",
         location: "Online - Udemy",
         date: "15 March 2025",
-        audience: "2,500 Audience",
         time: "Self-paced",
         price: "$14.99",
         image:
@@ -422,12 +400,10 @@ export default function EventCalendarPage() {
       {
         id: 12,
         title: "Remote Work Best Practices",
-        host: "Global HR Forum",
         description:
           "Panel discussion on effective collaboration in distributed teams.",
         location: "Online - Live",
         date: "28 February 2025",
-        audience: "1,800 Audience",
         time: "04:00 PM - 06:00 PM",
         price: "Free",
         image:
@@ -762,9 +738,9 @@ export default function EventCalendarPage() {
                 </button>
               </div>
               <div className="p-6">
-                <div className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                {/* <div className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                   Host By: {event.host}
-                </div>
+                </div> */}
                 <h3 className="text-xl font-bold mb-2 text-black dark:text-white">
                   {event.title}
                 </h3>
@@ -776,9 +752,9 @@ export default function EventCalendarPage() {
                     <MapPin className="w-4 h-4" /> {event.location}
                   </div>
                   <div>{event.date}</div>
-                  <div className="flex items-center gap-1">
+                  {/* <div className="flex items-center gap-1">
                     <Users className="w-4 h-4" /> {event.audience}
-                  </div>
+                  </div> */}
                   <div className="flex items-center gap-1">
                     <Clock className="w-4 h-4" /> {event.time}
                   </div>

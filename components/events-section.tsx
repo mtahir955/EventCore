@@ -9,52 +9,44 @@ const events = [
   {
     id: 1,
     title: "Starry Nights Music Fest",
-    host: "Eric Gryzbowski",
     description:
       "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
     date: "13 June 2025",
     time: "08:00 PM - 09:00 PM",
     location: "California",
-    attendees: "150 Audience",
     price: "$99.99",
     image: "/images/purple-venue.jpg",
   },
   {
     id: 2,
     title: "Starry Nights Music Fest",
-    host: "Eric Gryzbowski",
     description:
       "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
     date: "13 June 2025",
     time: "08:00 PM - 09:00 PM",
     location: "California",
-    attendees: "150 Audience",
     price: "$99.99",
     image: "/images/concert-crowd.jpg",
   },
   {
     id: 3,
     title: "Starry Nights Music Fest",
-    host: "Eric Gryzbowski",
     description:
       "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
     date: "13 June 2025",
     time: "08:00 PM - 09:00 PM",
     location: "California",
-    attendees: "150 Audience",
     price: "$99.99",
     image: "/images/blue-presentation.jpg",
   },
   {
     id: 4,
     title: "Starry Nights Music Fest",
-    host: "Eric Gryzbowski",
     description:
       "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
     date: "13 June 2025",
     time: "08:00 PM - 09:00 PM",
     location: "California",
-    attendees: "150 Audience",
     price: "$99.99",
     image: "/images/modern-venue.jpg",
   },
@@ -99,12 +91,6 @@ export function EventsSection() {
                     <Star className="h-5 w-5 text-white fill-white" />
                   </div>
                 </div>
-                {/* Host info overlay */}
-                <div className="absolute bottom-4 left-4">
-                  <p className="text-white text-sm font-medium">
-                    Host By : {event.host}
-                  </p>
-                </div>
               </div>
 
               <div className="p-6 space-y-4">
@@ -124,10 +110,6 @@ export function EventsSection() {
                   <div className="flex items-center space-x-2">
                     <Calendar className="h-4 w-4" />
                     <span>{event.date}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Users className="h-4 w-4" />
-                    <span>{event.attendees}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4" />

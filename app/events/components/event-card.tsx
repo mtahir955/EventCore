@@ -10,10 +10,8 @@ interface Event {
   description: string;
   image: string;
   price: string;
-  host: string;
   location: string;
   date: string;
-  audience: string;
   time: string;
 }
 
@@ -67,9 +65,9 @@ export function EventCard({ event }: EventCardProps) {
 
       {/* Content */}
       <div className="p-6">
-        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+        {/* <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
           Host By: {event.host}
-        </p>
+        </p> */}
         <h3 className="mb-3 text-xl font-bold text-black dark:text-white group-hover:text-[#D19537] transition-colors">
           {event.title}
         </h3>
@@ -84,8 +82,8 @@ export function EventCard({ event }: EventCardProps) {
             {event.date}
           </div>
           <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-            <Users className="mr-2 h-4 w-4" />
-            {event.audience}
+            {/* <Users className="mr-2 h-4 w-4" />
+            {event.audience} */}
             <Clock className="ml-4 mr-2 h-4 w-4" />
             {event.time}
           </div>
