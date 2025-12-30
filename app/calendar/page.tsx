@@ -6,7 +6,6 @@ import {
   ChevronRight,
   MapPin,
   Clock,
-  Users,
   Heart,
   X,
   Menu,
@@ -16,7 +15,6 @@ import {
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
@@ -24,7 +22,26 @@ import { usePathname } from "next/navigation";
 export default function EventCalendarPage() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [currentMonth, setCurrentMonth] = useState("June 2025");
+  // const [currentMonth, setCurrentMonth] = useState("June 2025");
+  const [currentDate, setCurrentDate] = useState(() => new Date());
+
+  const monthLabel = currentDate.toLocaleString("default", {
+    month: "long",
+    year: "numeric",
+  });
+
+  const goToPreviousMonth = () => {
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
+    );
+  };
+
+  const goToNextMonth = () => {
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
+    );
+  };
+
   const [viewMode, setViewMode] = useState<"In Person" | "Virtual">(
     "In Person"
   );
@@ -52,206 +69,206 @@ export default function EventCalendarPage() {
   const calendarDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   // ✅ Calendar Data for Upcoming Events
-  const calendarDataUpcoming = {
-    "In Person": [
-      [
-        { date: "1", event: null },
-        { date: "2", event: null },
-        { date: "3", event: "Tech & Innovation Expo" },
-        { date: "4", event: null },
-        { date: "5", event: "Starry Nights Music Fest" },
-        { date: "6", event: null },
-        { date: "7", event: null },
-      ],
-      [
-        { date: "8", event: null },
-        { date: "9", event: null },
-        { date: "10", event: null },
-        { date: "11", event: null },
-        { date: "12", event: "Fitness & Wellness Bootcamp" },
-        { date: "13", event: null },
-        { date: "14", event: null },
-      ],
-      [
-        { date: "15", event: null },
-        { date: "16", event: null },
-        { date: "17", event: "Fitness & Wellness Bootcamp" },
-        { date: "18", event: null },
-        { date: "19", event: null },
-        { date: "20", event: null },
-        { date: "21", event: null },
-      ],
-      [
-        { date: "22", event: null },
-        { date: "23", event: null },
-        { date: "24", event: "Fitness & Wellness Bootcamp" },
-        { date: "25", event: null },
-        { date: "26", event: null },
-        { date: "27", event: null },
-        { date: "28", event: null },
-      ],
-      [
-        { date: "29", event: "Fitness & Wellness Bootcamp" },
-        { date: "30", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-      ],
-    ],
-    Virtual: [
-      [
-        { date: "1", event: null },
-        { date: "2", event: "Leadership Webinar" },
-        { date: "3", event: null },
-        { date: "4", event: null },
-        { date: "5", event: null },
-        { date: "6", event: "E-Commerce Growth Summit" },
-        { date: "7", event: null },
-      ],
-      [
-        { date: "8", event: "Digital Marketing Masterclass" },
-        { date: "9", event: null },
-        { date: "10", event: null },
-        { date: "11", event: "Digital Marketing Masterclass" },
-        { date: "12", event: null },
-        { date: "13", event: null },
-        { date: "14", event: null },
-      ],
-      [
-        { date: "15", event: "Digital Marketing Masterclass" },
-        { date: "16", event: null },
-        { date: "17", event: null },
-        { date: "18", event: null },
-        { date: "19", event: null },
-        { date: "20", event: "Digital Marketing Masterclass" },
-        { date: "21", event: null },
-      ],
-      [
-        { date: "22", event: null },
-        { date: "23", event: null },
-        { date: "24", event: null },
-        { date: "25", event: "Digital Marketing Masterclass" },
-        { date: "26", event: null },
-        { date: "27", event: null },
-        { date: "28", event: null },
-      ],
-      [
-        { date: "29", event: "Digital Marketing Masterclass" },
-        { date: "30", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-      ],
-    ],
-  };
+  // const calendarDataUpcoming = {
+  //   "In Person": [
+  //     [
+  //       { date: "1", event: null },
+  //       { date: "2", event: null },
+  //       { date: "3", event: "Tech & Innovation Expo" },
+  //       { date: "4", event: null },
+  //       { date: "5", event: "Starry Nights Music Fest" },
+  //       { date: "6", event: null },
+  //       { date: "7", event: null },
+  //     ],
+  //     [
+  //       { date: "8", event: null },
+  //       { date: "9", event: null },
+  //       { date: "10", event: null },
+  //       { date: "11", event: null },
+  //       { date: "12", event: "Fitness & Wellness Bootcamp" },
+  //       { date: "13", event: null },
+  //       { date: "14", event: null },
+  //     ],
+  //     [
+  //       { date: "15", event: null },
+  //       { date: "16", event: null },
+  //       { date: "17", event: "Fitness & Wellness Bootcamp" },
+  //       { date: "18", event: null },
+  //       { date: "19", event: null },
+  //       { date: "20", event: null },
+  //       { date: "21", event: null },
+  //     ],
+  //     [
+  //       { date: "22", event: null },
+  //       { date: "23", event: null },
+  //       { date: "24", event: "Fitness & Wellness Bootcamp" },
+  //       { date: "25", event: null },
+  //       { date: "26", event: null },
+  //       { date: "27", event: null },
+  //       { date: "28", event: null },
+  //     ],
+  //     [
+  //       { date: "29", event: "Fitness & Wellness Bootcamp" },
+  //       { date: "30", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //     ],
+  //   ],
+  //   Virtual: [
+  //     [
+  //       { date: "1", event: null },
+  //       { date: "2", event: "Leadership Webinar" },
+  //       { date: "3", event: null },
+  //       { date: "4", event: null },
+  //       { date: "5", event: null },
+  //       { date: "6", event: "E-Commerce Growth Summit" },
+  //       { date: "7", event: null },
+  //     ],
+  //     [
+  //       { date: "8", event: "Digital Marketing Masterclass" },
+  //       { date: "9", event: null },
+  //       { date: "10", event: null },
+  //       { date: "11", event: "Digital Marketing Masterclass" },
+  //       { date: "12", event: null },
+  //       { date: "13", event: null },
+  //       { date: "14", event: null },
+  //     ],
+  //     [
+  //       { date: "15", event: "Digital Marketing Masterclass" },
+  //       { date: "16", event: null },
+  //       { date: "17", event: null },
+  //       { date: "18", event: null },
+  //       { date: "19", event: null },
+  //       { date: "20", event: "Digital Marketing Masterclass" },
+  //       { date: "21", event: null },
+  //     ],
+  //     [
+  //       { date: "22", event: null },
+  //       { date: "23", event: null },
+  //       { date: "24", event: null },
+  //       { date: "25", event: "Digital Marketing Masterclass" },
+  //       { date: "26", event: null },
+  //       { date: "27", event: null },
+  //       { date: "28", event: null },
+  //     ],
+  //     [
+  //       { date: "29", event: "Digital Marketing Masterclass" },
+  //       { date: "30", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //     ],
+  //   ],
+  // };
 
   // ✅ Calendar Data for Previous Events
-  const calendarDataPrevious = {
-    "In Person": [
-      [
-        { date: "1", event: null },
-        { date: "2", event: null },
-        { date: "3", event: "Spring Wellness Retreat" },
-        { date: "4", event: null },
-        { date: "5", event: "Startup Pitch Night" },
-        { date: "6", event: null },
-        { date: "7", event: null },
-      ],
-      [
-        { date: "8", event: "Art & Culture Fair" },
-        { date: "9", event: null },
-        { date: "10", event: "Art & Culture Fair" },
-        { date: "11", event: null },
-        { date: "12", event: null },
-        { date: "13", event: null },
-        { date: "14", event: null },
-      ],
-      [
-        { date: "15", event: null },
-        { date: "16", event: null },
-        { date: "17", event: null },
-        { date: "18", event: null },
-        { date: "19", event: null },
-        { date: "20", event: "Art & Culture Fair" },
-        { date: "21", event: null },
-      ],
-      [
-        { date: "22", event: null },
-        { date: "23", event: null },
-        { date: "24", event: null },
-        { date: "25", event: "Art & Culture Fair" },
-        { date: "26", event: null },
-        { date: "27", event: null },
-        { date: "28", event: null },
-      ],
-      [
-        { date: "29", event: "Art & Culture Fair" },
-        { date: "30", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-      ],
-    ],
-    Virtual: [
-      [
-        { date: "1", event: "Mindset Mastery Workshop" },
-        { date: "2", event: null },
-        { date: "3", event: "AI for Beginners" },
-        { date: "4", event: null },
-        { date: "5", event: null },
-        { date: "6", event: null },
-        { date: "7", event: null },
-      ],
-      [
-        { date: "8", event: null },
-        { date: "9", event: null },
-        { date: "10", event: null },
-        { date: "11", event: "Remote Work Best Practices" },
-        { date: "12", event: null },
-        { date: "13", event: null },
-        { date: "14", event: null },
-      ],
-      [
-        { date: "15", event: null },
-        { date: "16", event: null },
-        { date: "17", event: null },
-        { date: "18", event: null },
-        { date: "19", event: null },
-        { date: "20", event: null },
-        { date: "21", event: null },
-      ],
-      [
-        { date: "22", event: null },
-        { date: "23", event: null },
-        { date: "24", event: null },
-        { date: "25", event: null },
-        { date: "26", event: "Remote Work Best Practices" },
-        { date: "27", event: null },
-        { date: "28", event: null },
-      ],
-      [
-        { date: "29", event: null },
-        { date: "30", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-        { date: "", event: null },
-      ],
-    ],
-  };
+  // const calendarDataPrevious = {
+  //   "In Person": [
+  //     [
+  //       { date: "1", event: null },
+  //       { date: "2", event: null },
+  //       { date: "3", event: "Spring Wellness Retreat" },
+  //       { date: "4", event: null },
+  //       { date: "5", event: "Startup Pitch Night" },
+  //       { date: "6", event: null },
+  //       { date: "7", event: null },
+  //     ],
+  //     [
+  //       { date: "8", event: "Art & Culture Fair" },
+  //       { date: "9", event: null },
+  //       { date: "10", event: "Art & Culture Fair" },
+  //       { date: "11", event: null },
+  //       { date: "12", event: null },
+  //       { date: "13", event: null },
+  //       { date: "14", event: null },
+  //     ],
+  //     [
+  //       { date: "15", event: null },
+  //       { date: "16", event: null },
+  //       { date: "17", event: null },
+  //       { date: "18", event: null },
+  //       { date: "19", event: null },
+  //       { date: "20", event: "Art & Culture Fair" },
+  //       { date: "21", event: null },
+  //     ],
+  //     [
+  //       { date: "22", event: null },
+  //       { date: "23", event: null },
+  //       { date: "24", event: null },
+  //       { date: "25", event: "Art & Culture Fair" },
+  //       { date: "26", event: null },
+  //       { date: "27", event: null },
+  //       { date: "28", event: null },
+  //     ],
+  //     [
+  //       { date: "29", event: "Art & Culture Fair" },
+  //       { date: "30", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //     ],
+  //   ],
+  //   Virtual: [
+  //     [
+  //       { date: "1", event: "Mindset Mastery Workshop" },
+  //       { date: "2", event: null },
+  //       { date: "3", event: "AI for Beginners" },
+  //       { date: "4", event: null },
+  //       { date: "5", event: null },
+  //       { date: "6", event: null },
+  //       { date: "7", event: null },
+  //     ],
+  //     [
+  //       { date: "8", event: null },
+  //       { date: "9", event: null },
+  //       { date: "10", event: null },
+  //       { date: "11", event: "Remote Work Best Practices" },
+  //       { date: "12", event: null },
+  //       { date: "13", event: null },
+  //       { date: "14", event: null },
+  //     ],
+  //     [
+  //       { date: "15", event: null },
+  //       { date: "16", event: null },
+  //       { date: "17", event: null },
+  //       { date: "18", event: null },
+  //       { date: "19", event: null },
+  //       { date: "20", event: null },
+  //       { date: "21", event: null },
+  //     ],
+  //     [
+  //       { date: "22", event: null },
+  //       { date: "23", event: null },
+  //       { date: "24", event: null },
+  //       { date: "25", event: null },
+  //       { date: "26", event: "Remote Work Best Practices" },
+  //       { date: "27", event: null },
+  //       { date: "28", event: null },
+  //     ],
+  //     [
+  //       { date: "29", event: null },
+  //       { date: "30", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //       { date: "", event: null },
+  //     ],
+  //   ],
+  // };
 
   // ✅ Pick the right calendar data
-  const calendarData =
-    activeTab === "Upcoming Event"
-      ? calendarDataUpcoming[viewMode]
-      : calendarDataPrevious[viewMode];
+  // const calendarData =
+  //   activeTab === "Upcoming Event"
+  //     ? calendarDataUpcoming[viewMode]
+  //     : calendarDataPrevious[viewMode];
 
   // ✅ Upcoming Events Dataset
   const upcomingEvents = {
@@ -427,6 +444,43 @@ export default function EventCalendarPage() {
     setCurrentPage(page);
   };
 
+  const generateCalendar = (date: Date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+
+    const firstDayOfMonth = new Date(year, month, 1);
+    const lastDayOfMonth = new Date(year, month + 1, 0);
+
+    const daysInMonth = lastDayOfMonth.getDate();
+    const startDay = (firstDayOfMonth.getDay() + 6) % 7; // Monday start
+
+    const weeks: { date: number | null }[][] = [];
+    let currentWeek: { date: number | null }[] = [];
+
+    // Empty slots before first day
+    for (let i = 0; i < startDay; i++) {
+      currentWeek.push({ date: null });
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      currentWeek.push({ date: day });
+      if (currentWeek.length === 7) {
+        weeks.push(currentWeek);
+        currentWeek = [];
+      }
+    }
+
+    // Fill remaining slots
+    while (currentWeek.length < 7) {
+      currentWeek.push({ date: null });
+    }
+    weeks.push(currentWeek);
+
+    return weeks;
+  };
+
+  const calendarWeeks = generateCalendar(currentDate);
+
   return (
     <div className="min-h-screen bg-white dark:bg-black max-w-[1440px] mx-auto">
       {/* Header */}
@@ -489,7 +543,7 @@ export default function EventCalendarPage() {
                 )}
               </Button>
 
-              <Link href="/profile">
+              {/* <Link href="/profile">
                 <Button className="bg-transparent hover:bg-white dark:hover:bg-[#212121] flex items-center space-x-2">
                   <Avatar className="h-8 w-8">
                     <AvatarImage
@@ -502,7 +556,7 @@ export default function EventCalendarPage() {
                     Profile
                   </span>
                 </Button>
-              </Link>
+              </Link> */}
             </div>
 
             {/* Mobile Hamburger */}
@@ -564,7 +618,7 @@ export default function EventCalendarPage() {
               })}
 
               {/* Profile inside mobile menu */}
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+              {/* <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <Link href="/profile">
                   <Button className="bg-transparent hover:bg-gray-50 dark:hover:bg-[#212121] flex items-center space-x-2 w-full justify-start">
                     <Avatar className="h-8 w-8">
@@ -579,7 +633,7 @@ export default function EventCalendarPage() {
                     </span>
                   </Button>
                 </Link>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
@@ -610,13 +664,25 @@ export default function EventCalendarPage() {
         <div className="mb-16">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
             <div className="flex items-center space-x-4">
-              <button onClick={() => setCurrentMonth("May 2025")}>
+              {/* <button onClick={() => setCurrentMonth("May 2025")}>
                 <ChevronLeft className="w-6 h-6 text-gray-400" />
               </button>
               <h2 className="text-lg sm:text-xl md:text-2xl font-semibold dark:text-white">
                 {currentMonth}
               </h2>
               <button onClick={() => setCurrentMonth("July 2025")}>
+                <ChevronRight className="w-6 h-6 text-gray-400" />
+              </button> */}
+
+              <button onClick={goToPreviousMonth}>
+                <ChevronLeft className="w-6 h-6 text-gray-400" />
+              </button>
+
+              <h2 className="text-lg sm:text-xl md:text-2xl font-semibold dark:text-white">
+                {monthLabel}
+              </h2>
+
+              <button onClick={goToNextMonth}>
                 <ChevronRight className="w-6 h-6 text-gray-400" />
               </button>
             </div>
@@ -656,7 +722,7 @@ export default function EventCalendarPage() {
                 </div>
               ))}
             </div>
-            {calendarData.map((week, weekIndex) => (
+            {/* {calendarData.map((week, weekIndex) => (
               <div
                 key={weekIndex}
                 className="grid grid-cols-7 border-t border-gray-200 dark:border-gray-700"
@@ -677,6 +743,22 @@ export default function EventCalendarPage() {
                           </div>
                         )}
                       </>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))} */}
+            {calendarWeeks.map((week, weekIndex) => (
+              <div key={weekIndex} className="grid grid-cols-7 border-t">
+                {week.map((day, dayIndex) => (
+                  <div
+                    key={dayIndex}
+                    className="h-16 sm:h-20 md:h-24 p-2 border-r last:border-r-0"
+                  >
+                    {day.date && (
+                      <div className="text-sm font-medium dark:text-white">
+                        {day.date}
+                      </div>
                     )}
                   </div>
                 ))}
@@ -722,20 +804,20 @@ export default function EventCalendarPage() {
           {currentEvents.map((event) => (
             <Card
               key={event.id}
-              className="overflow-hidden relative bg-white dark:bg-[#212121] border border-gray-200 dark:border-gray-700"
+              className="overflow-hidden relative bg-white h-[380px] dark:bg-[#212121] border border-gray-200 dark:border-gray-700"
             >
               <div className="relative">
                 <img
                   src={event.image}
                   alt={event.title}
-                  className="w-full h-48 sm:h-64 object-cover"
+                  className="w-full h-38 sm:h-44 object-cover"
                 />
                 <div className="absolute top-3 right-3 bg-white dark:bg-black px-3 py-1 rounded-full text-xs sm:text-sm font-medium text-black dark:text-white">
                   {event.price}
                 </div>
-                <button className="absolute top-3 left-3 bg-white dark:bg-black w-8 h-8 rounded-full flex items-center justify-center">
+                {/* <button className="absolute top-3 left-3 bg-white dark:bg-black w-8 h-8 rounded-full flex items-center justify-center">
                   <Heart className="w-4 h-4 text-black dark:text-white" />
-                </button>
+                </button> */}
               </div>
               <div className="p-6">
                 {/* <div className="text-sm text-gray-600 dark:text-gray-300 mb-2">

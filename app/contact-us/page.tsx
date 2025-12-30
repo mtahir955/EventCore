@@ -133,7 +133,7 @@ export default function ContactPage() {
                 )}
               </Button>
 
-              <Link href="/profile">
+              {/* <Link href="/profile">
                 <Button className="bg-transparent hover:bg-white dark:hover:bg-[#212121] flex items-center space-x-2">
                   <Avatar className="h-8 w-8">
                     <AvatarImage
@@ -146,7 +146,7 @@ export default function ContactPage() {
                     Profile
                   </span>
                 </Button>
-              </Link>
+              </Link> */}
             </div>
 
             {/* Mobile Hamburger */}
@@ -208,7 +208,7 @@ export default function ContactPage() {
               })}
 
               {/* Profile inside mobile menu */}
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+              {/* <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <Link href="/profile">
                   <Button className="bg-transparent hover:bg-gray-50 dark:hover:bg-[#212121] flex items-center space-x-2 w-full justify-start">
                     <Avatar className="h-8 w-8">
@@ -223,7 +223,7 @@ export default function ContactPage() {
                     </span>
                   </Button>
                 </Link>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
@@ -342,7 +342,7 @@ export default function ContactPage() {
           )}
 
           {/* Location Section */}
-          <div>
+          {/* <div>
             <h3 className="text-2xl font-bold text-black dark:text-white mb-4">
               Our Location
             </h3>
@@ -362,35 +362,34 @@ export default function ContactPage() {
               Dummy location generation model by RSU ... Our approach generates
               more realistic dummy locations
             </p>
-          </div>
-        </div>
-
-        {/* Phone + Email */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-8">
-          <div className="flex items-center space-x-4 bg-white dark:bg-[#212121] p-6 rounded-lg border border-gray-100 dark:border-gray-700">
-            <div className="w-12 h-12 bg-[#D19537] rounded-full flex items-center justify-center">
-              <Phone className="w-6 h-6 text-white" />
+          </div> */}
+          {/* Phone + Email */}
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-1 gap-8">
+            <div className="flex items-center space-x-4 bg-white dark:bg-[#212121] p-6 rounded-lg border border-gray-100 dark:border-gray-700">
+              <div className="w-12 h-12 bg-[#D19537] rounded-full flex items-center justify-center">
+                <Phone className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-black dark:text-white text-lg">
+                  Phone
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300 underline">
+                  +1 (555) 000-0000
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-semibold text-black dark:text-white text-lg">
-                Phone
-              </h4>
-              <p className="text-gray-600 dark:text-gray-300 underline">
-                +1 (555) 000-0000
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center space-x-4 bg-white dark:bg-[#212121] p-6 rounded-lg border border-gray-100 dark:border-gray-700">
-            <div className="w-12 h-12 bg-[#D19537] rounded-full flex items-center justify-center">
-              <Mail className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h4 className="font-semibold text-black dark:text-white text-lg">
-                Email
-              </h4>
-              <p className="text-gray-600 dark:text-gray-300 underline">
-                email@example.com
-              </p>
+            <div className="flex items-center space-x-4 bg-white dark:bg-[#212121] p-6 rounded-lg border border-gray-100 dark:border-gray-700">
+              <div className="w-12 h-12 bg-[#D19537] rounded-full flex items-center justify-center">
+                <Mail className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-black dark:text-white text-lg">
+                  Email
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300 underline">
+                  email@example.com
+                </p>
+              </div>
             </div>
           </div>
         </div>

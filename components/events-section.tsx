@@ -71,13 +71,13 @@ export function EventsSection() {
           {events.map((event) => (
             <Card
               key={event.id}
-              className="group overflow-hidden bg-white dark:bg-gray-800 border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl"
+              className="group overflow-hidden bg-white h-[450px] dark:bg-gray-800 border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img
                   src={event.image || "/placeholder.svg"}
                   alt={event.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-[200px] object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 {/* Price tag in top right */}
                 <div className="absolute top-4 right-4">
@@ -86,11 +86,11 @@ export function EventsSection() {
                   </span>
                 </div>
                 {/* Star icon in bottom right */}
-                <div className="absolute bottom-4 right-4">
+                {/* <div className="absolute bottom-4 right-4">
                   <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
                     <Star className="h-5 w-5 text-white fill-white" />
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="p-6 space-y-4">

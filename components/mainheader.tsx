@@ -82,7 +82,7 @@ export function Header() {
             )}
           </Button>
 
-          <Link
+          {/* <Link
             href="/sign-up"
             className="bg-white text-[#D19537] outline px-8 py-2 rounded-full font-medium"
           >
@@ -93,7 +93,7 @@ export function Header() {
             className="bg-[#D19537] hover:bg-[#B8832F] text-white px-8 py-2 rounded-full font-medium"
           >
             Start Now
-          </Link>
+          </Link> */}
         </div>
 
         {/* Mobile Right Section */}
@@ -166,7 +166,7 @@ export function Header() {
             Calendar
           </Link>
 
-          <div className="flex flex-col space-y-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+          {/* <div className="flex flex-col space-y-3 pt-3 border-t border-gray-200 dark:border-gray-700">
             <Link
               href="/sign-up"
               className="bg-white text-[#D19537] outline px-6 py-2 rounded-full font-medium text-center"
@@ -178,7 +178,7 @@ export function Header() {
                 Start Now
               </Button>
             </Link>
-          </div>
+          </div> */}
         </div>
       )}
     </header>

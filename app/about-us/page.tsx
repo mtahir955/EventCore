@@ -124,7 +124,7 @@ export default function AboutPage() {
                 )}
               </Button>
 
-              <Link href="/profile">
+              {/* <Link href="/profile">
                 <Button className="bg-transparent hover:bg-white dark:hover:bg-[#212121] flex items-center space-x-2">
                   <Avatar className="h-8 w-8">
                     <AvatarImage
@@ -137,7 +137,7 @@ export default function AboutPage() {
                     Profile
                   </span>
                 </Button>
-              </Link>
+              </Link> */}
             </div>
 
             {/* Mobile Hamburger */}
@@ -199,7 +199,7 @@ export default function AboutPage() {
               })}
 
               {/* Profile inside mobile menu */}
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+              {/* <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <Link href="/profile">
                   <Button className="bg-transparent hover:bg-gray-50 dark:hover:bg-[#212121] flex items-center space-x-2 w-full justify-start">
                     <Avatar className="h-8 w-8">
@@ -214,7 +214,7 @@ export default function AboutPage() {
                     </span>
                   </Button>
                 </Link>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
