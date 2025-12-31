@@ -1,61 +1,67 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar, Clock, MapPin, Users, Star } from "lucide-react";
+import { Calendar, Clock, MapPin } from "lucide-react";
 import Link from "next/link";
+import { API_BASE_URL } from "@/config/apiConfig";
 
-const events = [
-  {
-    id: 1,
-    title: "Starry Nights Music Fest",
-    description:
-      "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
-    date: "13 June 2025",
-    time: "08:00 PM - 09:00 PM",
-    location: "California",
-    price: "$99.99",
-    image: "/images/purple-venue.jpg",
-  },
-  {
-    id: 2,
-    title: "Starry Nights Music Fest",
-    description:
-      "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
-    date: "13 June 2025",
-    time: "08:00 PM - 09:00 PM",
-    location: "California",
-    price: "$99.99",
-    image: "/images/concert-crowd.jpg",
-  },
-  {
-    id: 3,
-    title: "Starry Nights Music Fest",
-    description:
-      "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
-    date: "13 June 2025",
-    time: "08:00 PM - 09:00 PM",
-    location: "California",
-    price: "$99.99",
-    image: "/images/blue-presentation.jpg",
-  },
-  {
-    id: 4,
-    title: "Starry Nights Music Fest",
-    description:
-      "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
-    date: "13 June 2025",
-    time: "08:00 PM - 09:00 PM",
-    location: "California",
-    price: "$99.99",
-    image: "/images/modern-venue.jpg",
-  },
-];
+interface TopEvent {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  time: string; // display string
+  location: string; // display string
+  price: string; // display string
+  image: string;
+}
 
 export function EventsSection() {
+  const [events, setEvents] = useState<TopEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  /* ───────── FETCH TOP EVENTS ───────── */
+  useEffect(() => {
+    const fetchTopEvents = async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}/events/top?limit=6`);
+
+        const apiEvents = res.data?.data?.events || [];
+
+        // 🔥 SHOW ONLY 4
+        // setEvents(apiEvents.slice(0, 4));
+        const normalizedEvents: TopEvent[] = apiEvents
+          .slice(0, 4)
+          .map((event: any) => ({
+            id: event.id,
+            title: event.title,
+            description: event.description,
+            date: event.displayDate || event.date,
+            time: event.time?.display || "",
+            location: event.location?.display || "",
+            price: event.price?.display || "",
+            image: event.image,
+          }));
+
+        setEvents(normalizedEvents);
+      } catch (error) {
+        console.error("Failed to fetch top events", error);
+        setEvents([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTopEvents();
+  }, []);
+
   return (
     <section className="py-20 bg-white dark:bg-black">
       <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
             Explore Our{" "}
@@ -67,76 +73,228 @@ export function EventsSection() {
           </p>
         </div>
 
+        {/* Events */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {events.map((event) => (
-            <Card
-              key={event.id}
-              className="group overflow-hidden bg-white h-[450px] dark:bg-gray-800 border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <img
-                  src={event.image || "/placeholder.svg"}
-                  alt={event.title}
-                  className="w-full h-[200px] object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                {/* Price tag in top right */}
-                <div className="absolute top-4 right-4">
-                  <span className="bg-white text-gray-900 px-3 py-1 rounded-full text-sm font-semibold shadow-md">
-                    {event.price}
-                  </span>
-                </div>
-                {/* Star icon in bottom right */}
-                {/* <div className="absolute bottom-4 right-4">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
-                    <Star className="h-5 w-5 text-white fill-white" />
-                  </div>
-                </div> */}
-              </div>
+          {loading ? (
+            <p className="text-gray-600 dark:text-gray-300">
+              Loading top events...
+            </p>
+          ) : events.length > 0 ? (
+            events.map((event) => (
+              <Card
+                key={event.id}
+                className="group overflow-hidden bg-white h-[450px] dark:bg-gray-800 border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl"
+              >
+                {/* Image */}
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img
+                    src={event.image || "/placeholder.svg"}
+                    alt={event.title}
+                    className="w-full h-[200px] object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
 
-              <div className="p-6 space-y-4">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-[#D19537] transition-colors">
-                  {event.title}
-                </h3>
-
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                  {event.description}
-                </p>
-
-                <div className="grid grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-300">
-                  <div className="flex items-center space-x-2">
-                    <MapPin className="h-4 w-4" />
-                    <span>{event.location}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Calendar className="h-4 w-4" />
-                    <span>{event.date}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Clock className="h-4 w-4" />
-                    <span>{event.time}</span>
+                  {/* Price */}
+                  <div className="absolute top-4 right-4">
+                    <span className="bg-white text-gray-900 px-3 py-1 rounded-full text-sm font-semibold shadow-md">
+                      {event.price}
+                    </span>
                   </div>
                 </div>
-              </div>
-            </Card>
-          ))}
+
+                {/* Content */}
+                <div className="p-6 space-y-4">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-[#D19537] transition-colors">
+                    {event.title}
+                  </h3>
+
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-3">
+                    {event.description}
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-300">
+                    <div className="flex items-center space-x-2">
+                      <MapPin className="h-4 w-4" />
+                      <span>{event.location}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Calendar className="h-4 w-4" />
+                      <span>{event.date}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Clock className="h-4 w-4" />
+                      <span>{event.time}</span>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))
+          ) : (
+            <p className="text-gray-600 dark:text-gray-300">
+              No top events available.
+            </p>
+          )}
         </div>
 
-        <div className="flex flex-row sm:flex-row justify-center lg:justify-start items-center sm:items-stretch text-center gap-3 sm:gap-4">
+        {/* CTA */}
+        <div className="flex flex-row justify-center lg:justify-start gap-4">
           <Link href="/events">
-          <Button className="bg-[#D19537] hover:bg-[#B8832F] text-white px-8 py-3 rounded-full w-[130px] sm:w-auto">
-            View All Events
-          </Button>
+            <Button className="bg-[#D19537] hover:bg-[#B8832F] text-white px-8 py-3 rounded-full">
+              View All Events
+            </Button>
           </Link>
           <Link href="/contact-us">
-          <Button
-            variant="outline"
-            className="px-8 py-3 rounded-full border-[#D19537] text-[#D19537] hover:bg-[#D19537]/10 dark:hover:bg-[#D19537]/20 bg-transparent w-[130px] sm:w-auto"
-          >
-            Contact Now
-          </Button>
+            <Button
+              variant="outline"
+              className="px-8 py-3 rounded-full border-[#D19537] text-[#D19537] hover:bg-[#D19537]/10 bg-transparent"
+            >
+              Contact Now
+            </Button>
           </Link>
         </div>
       </div>
     </section>
   );
 }
+
+// "use client";
+
+// import { Button } from "@/components/ui/button";
+// import { Card } from "@/components/ui/card";
+// import { Calendar, Clock, MapPin, Users, Star } from "lucide-react";
+// import Link from "next/link";
+
+// const events = [
+//   {
+//     id: 1,
+//     title: "Starry Nights Music Fest",
+//     description:
+//       "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
+//     date: "13 June 2025",
+//     time: "08:00 PM - 09:00 PM",
+//     location: "California",
+//     price: "$99.99",
+//     image: "/images/purple-venue.jpg",
+//   },
+//   {
+//     id: 2,
+//     title: "Starry Nights Music Fest",
+//     description:
+//       "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
+//     date: "13 June 2025",
+//     time: "08:00 PM - 09:00 PM",
+//     location: "California",
+//     price: "$99.99",
+//     image: "/images/concert-crowd.jpg",
+//   },
+//   {
+//     id: 3,
+//     title: "Starry Nights Music Fest",
+//     description:
+//       "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
+//     date: "13 June 2025",
+//     time: "08:00 PM - 09:00 PM",
+//     location: "California",
+//     price: "$99.99",
+//     image: "/images/blue-presentation.jpg",
+//   },
+//   {
+//     id: 4,
+//     title: "Starry Nights Music Fest",
+//     description:
+//       "A magical evening under the stars with live bands, food stalls, and an electric crowd.",
+//     date: "13 June 2025",
+//     time: "08:00 PM - 09:00 PM",
+//     location: "California",
+//     price: "$99.99",
+//     image: "/images/modern-venue.jpg",
+//   },
+// ];
+
+// export function EventsSection() {
+//   return (
+//     <section className="py-20 bg-white dark:bg-black">
+//       <div className="max-w-7xl mx-auto px-6">
+//         <div className="text-center space-y-4 mb-16">
+//           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+//             Explore Our{" "}
+//             <span className="text-[#D19537] italic">Top Events</span>
+//           </h2>
+//           <p className="text-gray-600 dark:text-gray-300 text-[15px] max-w-2xl mx-auto">
+//             Explore our top events and discover the most exciting and
+//             must-attend experiences around you.
+//           </p>
+//         </div>
+
+//         <div className="grid md:grid-cols-2 gap-8 mb-12">
+//           {events.map((event) => (
+//             <Card
+//               key={event.id}
+//               className="group overflow-hidden bg-white h-[450px] dark:bg-gray-800 border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl"
+//             >
+//               <div className="relative aspect-[16/10] overflow-hidden">
+//                 <img
+//                   src={event.image || "/placeholder.svg"}
+//                   alt={event.title}
+//                   className="w-full h-[200px] object-cover group-hover:scale-105 transition-transform duration-300"
+//                 />
+//                 {/* Price tag in top right */}
+//                 <div className="absolute top-4 right-4">
+//                   <span className="bg-white text-gray-900 px-3 py-1 rounded-full text-sm font-semibold shadow-md">
+//                     {event.price}
+//                   </span>
+//                 </div>
+//                 {/* Star icon in bottom right */}
+//                 {/* <div className="absolute bottom-4 right-4">
+//                   <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
+//                     <Star className="h-5 w-5 text-white fill-white" />
+//                   </div>
+//                 </div> */}
+//               </div>
+
+//               <div className="p-6 space-y-4">
+//                 <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-[#D19537] transition-colors">
+//                   {event.title}
+//                 </h3>
+
+//                 <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+//                   {event.description}
+//                 </p>
+
+//                 <div className="grid grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-300">
+//                   <div className="flex items-center space-x-2">
+//                     <MapPin className="h-4 w-4" />
+//                     <span>{event.location}</span>
+//                   </div>
+//                   <div className="flex items-center space-x-2">
+//                     <Calendar className="h-4 w-4" />
+//                     <span>{event.date}</span>
+//                   </div>
+//                   <div className="flex items-center space-x-2">
+//                     <Clock className="h-4 w-4" />
+//                     <span>{event.time}</span>
+//                   </div>
+//                 </div>
+//               </div>
+//             </Card>
+//           ))}
+//         </div>
+
+//         <div className="flex flex-row sm:flex-row justify-center lg:justify-start items-center sm:items-stretch text-center gap-3 sm:gap-4">
+//           <Link href="/events">
+//           <Button className="bg-[#D19537] hover:bg-[#B8832F] text-white px-8 py-3 rounded-full w-[130px] sm:w-auto">
+//             View All Events
+//           </Button>
+//           </Link>
+//           <Link href="/contact-us">
+//           <Button
+//             variant="outline"
+//             className="px-8 py-3 rounded-full border-[#D19537] text-[#D19537] hover:bg-[#D19537]/10 dark:hover:bg-[#D19537]/20 bg-transparent w-[130px] sm:w-auto"
+//           >
+//             Contact Now
+//           </Button>
+//           </Link>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
