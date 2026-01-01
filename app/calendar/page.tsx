@@ -19,6 +19,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import { API_BASE_URL } from "@/config/apiConfig";
+import { resolveFileUrl } from "@/utils/resolveFileUrl";
 
 /* ───────────────── TYPES ───────────────── */
 
@@ -182,12 +183,12 @@ export default function EventCalendarPage() {
           id: e.id,
           title: e.title,
           description: e.description,
-          date: e.displayDate, // ✅ user-friendly date
+          date: e.displayDate,
           displayDate: e.displayDate,
-          time: e.time || "", // ✅ plain string
-          location: e.location || "", // ✅ plain string
-          price: e.price || "", // ✅ plain string
-          image: e.image,
+          time: e.time || "",
+          location: e.location || "",
+          price: e.price || "",
+          image: resolveFileUrl(e.image), // ✅ FIX
           mode: e.mode === "Virtual" ? "Virtual" : "In Person",
           status: "Upcoming",
         }));

@@ -7,6 +7,7 @@ import { EventCard } from "../components/event-card";
 import { Pagination } from "../components/pagination";
 import { API_BASE_URL } from "../../../config/apiConfig";
 // import { HOST_Tenant_ID } from "@/config/hostTenantId";
+import { resolveFileUrl } from "@/utils/resolveFileUrl";
 
 interface EventItem {
   id: string;
@@ -46,7 +47,12 @@ export function EventsSection() {
         });
 
         const apiEvents = res.data?.data?.events || [];
-        setEvents(apiEvents);
+        const mappedEvents = apiEvents.map((event: any) => ({
+          ...event,
+          image: resolveFileUrl(event.image),
+        }));
+
+        setEvents(mappedEvents);
       } catch (error) {
         console.error("Failed to fetch events", error);
         setEvents([]);
