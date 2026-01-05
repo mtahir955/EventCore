@@ -1,6 +1,6 @@
 import { Header } from "../events/components/header"
 import { EventsSection } from "../events/components/events-section"
-import { Footer } from "../events/components/footer" 
+import { Footer } from "@/components/mainfooter" 
 
 export default function EventsPage() {
   return (

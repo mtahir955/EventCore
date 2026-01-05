@@ -10,6 +10,7 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
+import { Footer } from "@/components/mainfooter";
 
 export default function ContactPage() {
   const pathname = usePathname(); // ⬅️ Detect current route
@@ -396,145 +397,7 @@ export default function ContactPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-[#212121] border-t border-gray-100 dark:border-gray-700 py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-black dark:text-white mb-4">
-                Event Core
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Vivamus tristique odio sit amet velit semper, eu posuere turpis
-                interdum. Cras egestas purus
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold text-black dark:text-white mb-6">
-                Quick Link
-              </h4>
-              <ul className="space-y-3">
-                <li>
-                  <a
-                    href="/#"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/about-us"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/events"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    Events
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/trainers"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    Trainers
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/calendar"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    Calendar
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-black dark:text-white mb-6">
-                Help
-              </h4>
-              <ul className="space-y-3">
-                <li>
-                  <a
-                    href="/contact-us"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/terms-of-services"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/privacy-policy"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    Privacy Policy
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-black dark:text-white mb-6">
-                Follow Us
-              </h4>
-              <ul className="space-y-3">
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    Facebook
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    Instagram
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    Twitter
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    Youtube
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      {/* Copyright */}
-      <div className="bg-[#D19537] py-4">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-white">©2025 Event Core. All rights reserved.</p>
-        </div>
-      </div>
+      <Footer/>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { Header } from "../privacy-policy/components/header"
-import { Footer } from "../privacy-policy/components/footer"
+import { Footer } from "@/components/mainfooter"
 import { PrivacyPolicyContent } from "../privacy-policy/components/privacy-policy-content"
 import { ThemeProvider } from "next-themes";
 

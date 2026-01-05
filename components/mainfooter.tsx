@@ -13,9 +13,7 @@ export function Footer() {
               <Image src="/images/ec-logo.png" alt="Event Core" width={32} height={32} className="rounded-lg" />
               <span className="font-bold text-2xl text-gray-900 dark:text-white">Event Core</span>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed max-w-xs">
-              Vivamus tristique odio sit amet velit semper, eu posuere turpis interdum.Cras egestas purus
-            </p>
+            
           </div>
 
           <div>
@@ -74,22 +72,22 @@ export function Footer() {
             <h3 className="font-bold text-gray-900 dark:text-white mb-6 text-lg">Follow Us</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="#" className="text-gray-600 dark:text-gray-300 hover:text-[#D19537] transition-colors">
+                <Link href="https://www.facebook.com" className="text-gray-600 dark:text-gray-300 hover:text-[#D19537] transition-colors">
                   Facebook
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-600 dark:text-gray-300 hover:text-[#D19537] transition-colors">
+                <Link href="https://www.instagram.com" className="text-gray-600 dark:text-gray-300 hover:text-[#D19537] transition-colors">
                   Instagram
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-600 dark:text-gray-300 hover:text-[#D19537] transition-colors">
+                <Link href="https://www.x.com" className="text-gray-600 dark:text-gray-300 hover:text-[#D19537] transition-colors">
                   Twitter
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-600 dark:text-gray-300 hover:text-[#D19537] transition-colors">
+                <Link href="https://www.youtube.com" className="text-gray-600 dark:text-gray-300 hover:text-[#D19537] transition-colors">
                   Youtube
                 </Link>
               </li>
