@@ -181,9 +181,6 @@ export default function TermsOfService() {
           <h1 className="text-3xl sm:text-4xl font-bold text-black dark:text-white mb-4">
             Terms of <span className="text-[#D19537]">Service</span>
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Last Updated: August 30, 2025
-          </p>
         </div>
 
         {/* Content */}
@@ -355,10 +352,10 @@ export default function TermsOfService() {
               </p>
             </section>
 
-            {/* 12 */}
+            {/* 11 */}
             <section>
               <h2 className="text-xl sm:text-2xl font-bold text-black dark:text-white mb-4">
-                12. Contact Us
+                11. Contact Us
               </h2>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
                 For any questions about these Terms of Service, please contact

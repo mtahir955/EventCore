@@ -259,28 +259,22 @@ export default function AboutPage() {
               <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-8">
                 About{" "}
                 <span className="text-[#D19537] italic">
-                  Event Core Solution
+                  Event Core
                 </span>
               </h2>
               <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                  varius faucibus massa sollicitudin amet augue. Nibh metus a
-                  semper purus mauris duis. Lorem eu neque, tristique quis duis.
-                  Nibh scelerisque ac adipiscing velit non nulla in amet
-                  pellentesque. Sit turpis pretium eget maecenas. Vestibulum
-                  dolor mattis consectetur eget commodo vitae.
+                  Event Core is a smart event ticketing and management platform that helps organizers create, 
+                  sell, and manage events effortlessly. From secure payments and QR-based check-ins to real-time 
+                  analytics and multi-tenant support, Event Core delivers everything needed to run successful 
+                  virtual and in-person events on one powerful platform.
                 </p>
                 <p>
-                  Amet pellentesque sit pulvinar lorem mi a, euismod risus
-                  rhoncus. Elementum ullamcorper nec, habitasse vulputate. Eget
-                  dictum quis est sed egestas tellus, a lectus. Quam ullamcorper
-                  in fringilla arcu aliquet fames arcu. Lacinia eget faucibus
-                  urna, nam risus nec elementum cras porta. Sed elementum, sed
-                  dolor purus dolor dui. Ut dictum nulla pulvinar vulputate sit
-                  sagittis in eleifend dignissim. Natoque mauris cras molestie
-                  velit. Maecenas eget adipiscing quisque viverra lectus arcu,
-                  tincidunt ultrices pellentesque.
+                  Built with scalability, security, and ease of use at its core, Event Core streamlines 
+                  the entire event lifecycle from event setup and promotion to attendee engagement and post-event 
+                  insights. Whether you’re hosting a small private gathering or managing large-scale events, 
+                  Event Core provides the flexibility and reliability to grow with your needs while delivering 
+                  a seamless experience for both organizers and attendees.
                 </p>
               </div>
               <Button

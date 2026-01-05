@@ -89,9 +89,6 @@ export function PrivacyPolicyContent() {
         <h1 className="text-3xl sm:text-4xl font-bold text-black dark:text-white mb-4">
           Privacy Policy
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Effective date: August 31, 2025
-        </p>
       </div>
 
       {/* Main Layout */}
@@ -134,8 +131,11 @@ export function PrivacyPolicyContent() {
               Information We Collect
             </h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              Eget quis mi enim, leo lacinia pharetra, semper. Eget in volutpat
-              mollis at volutpat lectus velit, sed auctor...
+              Event Core collects information necessary to provide and improve our services, 
+              including personal details such as name, email address, payment-related information, 
+              and event data. We may also collect technical information like IP address, device type, 
+              and usage behavior to enhance platform performance and security. Information is collected 
+              when users register, create events, purchase tickets, or interact with the platform.
             </p>
           </section>
 
@@ -144,8 +144,11 @@ export function PrivacyPolicyContent() {
               How Event Core Uses Your Information
             </h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              Eget quis mi enim, leo lacinia pharetra, semper. Eget in
-              volutpat...
+              We use collected information to operate, maintain, and improve Event Core’s services, 
+              including event management, ticket processing, customer support, and platform analytics. 
+              Your data helps us personalize user experiences, process secure payments, prevent fraud, 
+              and communicate important updates related to events or accounts. We may also use aggregated 
+              data for performance monitoring and feature enhancements.
             </p>
           </section>
 
@@ -154,7 +157,11 @@ export function PrivacyPolicyContent() {
               Sharing Your Information
             </h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-              Morbi sed imperdiet in ipsum, adipiscing elit dui lectus...
+             Event Core does not sell or rent your personal information to third parties. 
+             Information may be shared only with trusted service providers such as payment gateways, 
+             hosting services, and analytics tools strictly for operational purposes. We may also disclose 
+             information if required by law or to protect the rights, safety, and security of Event Core 
+             and its users.
             </p>
           </section>
 
@@ -163,12 +170,14 @@ export function PrivacyPolicyContent() {
               Cookies and Tracking Technologies
             </h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-              Morbi sed imperdiet in ipsum, adipiscing elit dui lectus...
+              Event Core uses cookies and similar tracking technologies to improve website functionality, 
+              enhance user experience, and analyze platform usage. These technologies help us remember user
+              preferences, maintain secure sessions, and optimize performance. Users can control or disable 
+              cookies through their browser settings, though some features may be affected.
             </p>
             <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 sm:pl-6 py-4 mb-8 bg-gray-50 dark:bg-gray-800 rounded-r-lg">
               <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed">
-                "Ipsum sit mattis nulla quam nulla. Gravida id gravida ac enim
-                mauris id..."
+                “One powerful platform to create, manage, and scale events with confidence.”
               </p>
             </blockquote>
           </section>
