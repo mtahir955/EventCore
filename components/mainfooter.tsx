@@ -6,12 +6,12 @@ import Link from "next/link"
 export function Footer() {
   return (
     <footer className="bg-gray-100 dark:bg-[#212121]">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+      <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid md:grid-cols-4 gap-12">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Image src="/images/ec-logo.png" alt="Event Core" width={32} height={32} className="rounded-lg" />
-              <span className="font-bold text-2xl text-gray-900 dark:text-white">Event Core</span>
+              <Image src="/images/EC_logo-2.png" alt="Event Core" width={180} height={180} className="rounded-lg" />
+              {/* <span className="font-bold text-2xl text-gray-900 dark:text-white">Event Core</span> */}
             </div>
             
           </div>
@@ -98,7 +98,7 @@ export function Footer() {
 
       <div className="bg-[#D19537] py-4">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-white text-sm">©2025 Event Core. All rights reserved.</p>
+          <p className="text-white text-sm">©2026 Event Core. All rights reserved.</p>
         </div>
       </div>
     </footer>

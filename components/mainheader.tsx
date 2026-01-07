@@ -17,10 +17,10 @@ export function Header() {
         {/* Left: Logo */}
         <div className="flex items-center space-x-3">
           <Image
-            src="/images/ec-logo.png"
+            src="/images/EC_logo-1.png"
             alt="Event Core"
-            width={48}
-            height={48}
+            width={150}
+            height={150}
             className="rounded-lg"
           />
         </div>

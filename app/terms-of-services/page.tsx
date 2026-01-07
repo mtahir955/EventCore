@@ -24,16 +24,16 @@ export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       {/* ✅ Header (navbar unchanged) */}
-      <header className="bg-white dark:bg-[#212121] border-b border-gray-200 px-4 py-1">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+      <header className="bg-white dark:bg-[#212121] border-b border-gray-200 px-4 py-0">
+        <div className="max-w-7xl mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <Image
-                src="/images/ec-logo.png"
+                src="/images/EC_logo-1.png"
                 alt="Event Core"
-                width={48}
-                height={48}
+                width={150}
+                height={150}
                 className="rounded-lg"
               />
             </div>
@@ -372,7 +372,7 @@ export default function TermsOfService() {
       </main>
 
       {/* ✅ Footer */}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

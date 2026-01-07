@@ -66,16 +66,16 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       {/* Header Navigation */}
-      <header className="bg-white dark:bg-[#212121] border-b border-gray-200 dark:border-gray-700 px-4 py-1">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+      <header className="bg-white dark:bg-[#212121] border-b border-gray-200 dark:border-gray-700 px-4 py-0">
+        <div className="max-w-7xl mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             {/* Left: Logo */}
             <div className="flex items-center space-x-3">
               <Image
-                src="/images/ec-logo.png"
+                src="/images/EC_logo-1.png"
                 alt="Event Core"
-                width={48}
-                height={48}
+                width={150}
+                height={150}
                 className="rounded-lg"
               />
             </div>
@@ -258,24 +258,26 @@ export default function AboutPage() {
                 </span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-8">
-                About{" "}
-                <span className="text-[#D19537] italic">
-                  Event Core
-                </span>
+                About <span className="text-[#D19537] italic">Event Core</span>
               </h2>
               <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
                 <p>
-                  Event Core is a smart event ticketing and management platform that helps organizers create, 
-                  sell, and manage events effortlessly. From secure payments and QR-based check-ins to real-time 
-                  analytics and multi-tenant support, Event Core delivers everything needed to run successful 
-                  virtual and in-person events on one powerful platform.
+                  Event Core is a smart event ticketing and management platform
+                  that helps organizers create, sell, and manage events
+                  effortlessly. From secure payments and QR-based check-ins to
+                  real-time analytics and multi-tenant support, Event Core
+                  delivers everything needed to run successful virtual and
+                  in-person events on one powerful platform.
                 </p>
                 <p>
-                  Built with scalability, security, and ease of use at its core, Event Core streamlines 
-                  the entire event lifecycle from event setup and promotion to attendee engagement and post-event 
-                  insights. Whether you’re hosting a small private gathering or managing large-scale events, 
-                  Event Core provides the flexibility and reliability to grow with your needs while delivering 
-                  a seamless experience for both organizers and attendees.
+                  Built with scalability, security, and ease of use at its core,
+                  Event Core streamlines the entire event lifecycle from event
+                  setup and promotion to attendee engagement and post-event
+                  insights. Whether you’re hosting a small private gathering or
+                  managing large-scale events, Event Core provides the
+                  flexibility and reliability to grow with your needs while
+                  delivering a seamless experience for both organizers and
+                  attendees.
                 </p>
               </div>
               <Button
@@ -477,8 +479,7 @@ export default function AboutPage() {
       </section>
 
       {/* Footer */}
-      <Footer/>
-      
+      <Footer />
     </div>
   );
 }
