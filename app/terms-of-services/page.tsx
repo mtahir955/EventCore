@@ -222,7 +222,7 @@ export default function TermsOfService() {
                   <span className="font-bold">
                     platform operator and controller
                   </span>{" "}
-                  for system-level data.
+                  for system level data.
                 </li>
               </ul>
             </div>
@@ -344,7 +344,7 @@ export default function TermsOfService() {
             </h2>
             <div className="mt-4 text-[15px] sm:text-base leading-relaxed">
               <p className="mb-3">
-                By attending an event using Eventcore-issued credentials, you
+                By attending an event using Eventcore issued credentials, you
                 consent to:
               </p>
               <ul className="list-disc pl-6 space-y-2">

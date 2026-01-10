@@ -259,13 +259,13 @@ export function PrivacyPolicyContent() {
                 credentials
               </li>
               <li>
-                Verify eligibility for member-only events, pricing, or benefits
+                Verify eligibility for member only events, pricing, or benefits
               </li>
               <li>
                 Manage on-site and virtual event access and attendance tracking
               </li>
               <li>
-                Communicate event-related updates, confirmations, changes, and
+                Communicate event related updates, confirmations, changes, and
                 alerts
               </li>
               <li>
@@ -315,8 +315,8 @@ export function PrivacyPolicyContent() {
                   Payment &amp; Fraud Prevention Providers:
                 </p>
                 <p>
-                  Transaction and billing data is shared with PCI-compliant
-                  payment processors and fraud-prevention services.
+                  Transaction and billing data is shared with PCI compliant
+                  payment processors and fraud prevention services.
                 </p>
               </div>
 
