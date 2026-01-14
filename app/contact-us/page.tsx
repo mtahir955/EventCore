@@ -365,31 +365,23 @@ export default function ContactPage() {
             </p>
           </div> */}
           {/* Phone + Email */}
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-1 gap-8">
-            <div className="flex items-center space-x-4 bg-white dark:bg-[#212121] p-6 rounded-lg border border-gray-100 dark:border-gray-700">
-              <div className="w-12 h-12 bg-[#D19537] rounded-full flex items-center justify-center">
-                <Phone className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h4 className="font-semibold text-black dark:text-white text-lg">
-                  Phone
-                </h4>
-                <p className="text-gray-600 dark:text-gray-300 underline">
-                  +1 (555) 000-0000
-                </p>
-              </div>
-            </div>
+          <div className="mt-30">
             <div className="flex items-center space-x-4 bg-white dark:bg-[#212121] p-6 rounded-lg border border-gray-100 dark:border-gray-700">
               <div className="w-12 h-12 bg-[#D19537] rounded-full flex items-center justify-center">
                 <Mail className="w-6 h-6 text-white" />
               </div>
+
               <div>
                 <h4 className="font-semibold text-black dark:text-white text-lg">
                   Email
                 </h4>
-                <p className="text-gray-600 dark:text-gray-300 underline">
-                  email@example.com
-                </p>
+
+                <a
+                  href="mailto:support@eventcoresolutions.com"
+                  className="text-gray-600 dark:text-gray-300 underline hover:text-[#D19537] transition"
+                >
+                  support@eventcoresolutions.com
+                </a>
               </div>
             </div>
           </div>
