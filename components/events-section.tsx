@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Calendar, Clock, MapPin } from "lucide-react";
 import Link from "next/link";
 import { API_BASE_URL } from "@/config/apiConfig";
+import { resolveFileUrl } from "@/utils/resolveFileUrl";
 
 interface TopEvent {
   id: string;
@@ -43,7 +44,7 @@ export function EventsSection() {
             time: event.time?.display || "",
             location: event.location?.display || "",
             price: event.price?.display || "",
-            image: event.image,
+            image: resolveFileUrl(event.image), // ✅ Ensure consistent file URL format
           }));
 
         setEvents(normalizedEvents);
