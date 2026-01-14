@@ -44,7 +44,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Build-time environment variables
-ARG NEXT_PUBLIC_API_BASE_URL=https://eventcoresolutions.com/api
+ARG NEXT_PUBLIC_API_BASE_URL=https://api.eventcoresolutions.com
 ARG NEXT_PUBLIC_APP_ENV=production
 
 ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
