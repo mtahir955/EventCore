@@ -3,20 +3,13 @@ version: '3.8'
 # =============================================================================
 # EventCore Marketing Production Docker Compose
 # =============================================================================
-# 
-# ENVIRONMENT FILE:
-#   This file uses .env.prod by default. Create it from env.prod.example:
-#   cp env.prod.example .env.prod
 #
 # USAGE:
-#   # Start with default .env.prod (if exists)
 #   docker-compose -f docker-compose.prod.yml up -d
 #
-#   # Or explicitly specify env file
-#   docker-compose -f docker-compose.prod.yml --env-file .env.prod up -d
-#
-#   # Override specific variables at runtime
-#   NEXT_PUBLIC_API_BASE_URL=https://api.example.com docker-compose -f docker-compose.prod.yml up -d
+# NOTES:
+#   - The network "eventcore-network" will be created automatically if it doesn't exist
+#   - API URL is hardcoded to api.eventcoresolutions.com (configured at build time)
 # =============================================================================
 
 services:
@@ -29,8 +22,6 @@ services:
         - NEXT_PUBLIC_APP_ENV=${NEXT_PUBLIC_APP_ENV:-production}
     image: eventcoresolutions/eventcore-marketing:latest
     container_name: eventcore-marketing
-    env_file:
-      - .env.prod
     ports:
       - "3000:3000"
     restart: unless-stopped
@@ -49,5 +40,4 @@ services:
 
 networks:
   eventcore-network:
-    external: true
-    name: eventcore-network
+    driver: bridge
