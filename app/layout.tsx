@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://eventcoresolutions.com"),
   title: {
     default: "Event Core - At the Core of Every Great Event",
     template: "%s | Event Core",

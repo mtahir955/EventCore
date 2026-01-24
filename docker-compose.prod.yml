@@ -1,5 +1,3 @@
-version: '3.8'
-
 # =============================================================================
 # EventCore Marketing Production Docker Compose
 # =============================================================================
@@ -22,6 +20,8 @@ services:
         - NEXT_PUBLIC_APP_ENV=${NEXT_PUBLIC_APP_ENV:-production}
     image: eventcoresolutions/eventcore-marketing:latest
     container_name: eventcore-marketing
+    env_file:
+      - .env.prod
     ports:
       - "3000:3000"
     restart: unless-stopped

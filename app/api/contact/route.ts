@@ -32,7 +32,7 @@ export async function POST(req: Request) {
       html: `
         <div style="font-family: Arial, sans-serif; padding: 20px; background:#f4f4f4;">
           <div style="max-width:600px; margin:auto; background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,.1);">
-            
+
             <div style="background:#D19537; padding:16px; text-align:center; color:#fff; font-size:20px; font-weight:bold;">
               New Contact Message
             </div>
