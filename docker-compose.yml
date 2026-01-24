@@ -6,8 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        # - NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8080}
-        - NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL:-https://api.eventcoresolutions.com}
+        - API_BASE_URL=${API_BASE_URL:-https://api.eventcoresolutions.com}
         - NEXT_PUBLIC_APP_ENV=${NEXT_PUBLIC_APP_ENV:-development}
     image: eventcoresolutions/eventcore-marketing:dev
     container_name: eventcore-marketing-dev

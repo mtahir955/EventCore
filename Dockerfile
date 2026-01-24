@@ -43,13 +43,15 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Build-time environment variables
-ARG NEXT_PUBLIC_API_BASE_URL=https://api.eventcoresolutions.com
+# Build-time API URL configuration
+ARG API_BASE_URL=https://api.eventcoresolutions.com
 ARG NEXT_PUBLIC_APP_ENV=production
 
-ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
 ENV NEXT_PUBLIC_APP_ENV=$NEXT_PUBLIC_APP_ENV
 ENV NEXT_TELEMETRY_DISABLED=1
+
+# Replace API URL in config file at build time (whatever is there -> production URL)
+RUN sed -i "s|API_BASE_URL = \".*\"|API_BASE_URL = \"${API_BASE_URL}\"|g" /app/config/apiConfig.ts
 
 RUN \
   if [ -f pnpm-lock.yaml ]; then \
