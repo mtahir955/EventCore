@@ -3,10 +3,11 @@
 # =============================================================================
 #
 # USAGE:
-#   docker-compose -f docker-compose.prod.yml up -d
+#   # From the eventcore-marketting directory:
+#   docker-compose -f docker-compose.prod.yml --env-file .env.prod up -d
 #
 # NOTES:
-#   - The network "eventcore-network" will be created automatically if it doesn't exist
+#   - Uses shared network 'eventcore_shared_network' - auto-created if not exists
 #   - API URL is hardcoded to api.eventcoresolutions.com (configured at build time)
 # =============================================================================
 
@@ -30,7 +31,7 @@ services:
       - PORT=3000
       - HOSTNAME=0.0.0.0
     networks:
-      - eventcore-network
+      - eventcore_shared_network
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
       interval: 30s
@@ -39,5 +40,5 @@ services:
       start_period: 40s
 
 networks:
-  eventcore-network:
+  eventcore_shared_network:
     driver: bridge
